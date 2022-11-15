@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="top-space"> 
     <h1>이게 내려오면 됨</h1>
     <h1>찜한 콘텐츠 보는 페이지</h1>
   </div>
@@ -15,5 +15,7 @@ export default {
 </script>
 
 <style>
-
+#top-space {
+  padding-top: 60px;
+}
 </style>

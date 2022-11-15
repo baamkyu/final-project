@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1> 1</h1>
     <h3>박스오피스 순위</h3>
     <p>poster</p>
     <p>title</p>

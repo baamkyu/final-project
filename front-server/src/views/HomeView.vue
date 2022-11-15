@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="top-space">
     <BodyPage/>
   </div>
 </template>
@@ -16,5 +16,7 @@ export default {
 </script>
 
 <style>
-
+#top-space {
+  padding-top: 30px;
+}
 </style>

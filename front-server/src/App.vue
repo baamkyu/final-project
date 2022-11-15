@@ -1,47 +1,90 @@
 <template>
-  <div id="app">
-    <nav>
+  <div>
+    <header>
       <img src="./assets/logo.png" alt="">
-      <router-link id="nav-text-deco" :to="{ name: 'HomeView' }">홈</router-link> |
-      <router-link id="nav-text-deco" :to="{ name: 'RecommendView' }">추천 콘텐츠</router-link> |
-      <router-link id="nav-text-deco" :to="{ name: 'WantToSeeView' }">내가 찜한 콘텐츠</router-link> |
-    </nav>
-    <router-view/>
+      <nav>
+        <router-link id="nav-menu" :to="{ name: 'HomeView' }">홈</router-link>
+        <router-link id="nav-menu" :to="{ name: 'RecommendView' }">추천 콘텐츠</router-link>
+        <router-link id="nav-menu" :to="{ name: 'WantToSeeView' }">내가 찜한 콘텐츠</router-link> 
+      </nav>
+    </header>
+
+    <body>
+      <router-view/>
+    </body>
+
+
+    <hr>
+    <footer>
+      <h3 class="howmanyscore">지금까지 /count/개의 평가가 쌓였어요.</h3>
+      <p>SSAFY 8기</p>
+      <p>김관섭 임범규</p>
+    </footer>
+
+
+
   </div>
 </template>
 
 
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #2c3e50;
+header {
+  position: fixed;
+  width:100%;
+  height: 50px;
+  padding: 1rem;
+  color: white;
+  background: black;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
 }
 
-nav {
-  padding: 30px;
+body {
+  /* padding-top: 75px; */
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-.app {
-  min-height: 60px;
-}
-
-#nav-text-deco {
-  text-decoration: none; 
+footer {
+  background-color: black;
+  color: gray;
+  text-align: center;
 }
 
 img {
-  margin-right: 10px;
+  /* margin-right: 1000px; */
+
+}
+
+nav {
+  z-index: 1;
+  margin-left: auto;
+  text-align: right;
+}
+
+
+nav a {
+  /* font-weight: bold; */
+  /* color: #2c3e50; */
+}
+
+/* 얘 왜 빨간색 안 되지?, 홈 누르면 align중간이 맞나? */
+nav a.router-link-exact-active {
+  font-weight: bold;
+  align-items: center;
+  text-align: center;
+  color: red;
+}
+
+
+#nav-menu {
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 20px;
+  color: white;
+}
+
+.howmanyscore{
+  color: crimson;
 }
 </style>
