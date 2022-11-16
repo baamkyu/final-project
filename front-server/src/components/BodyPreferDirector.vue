@@ -2,15 +2,18 @@
   <div>
     <hr>
     <h3>/userid/님이 선택한 /directorname/감독의 작품</h3>
-    <p>poster</p>
-    <p>title</p>
-    <p>별점★</p>
+    <PreferDirectorItem/>
   </div>
 </template>
 
 <script>
+import PreferDirectorItem from '@/components/BodyPreferDirectorItem'
+
 export default {
-  name: 'PreferDirector'
+  name: 'PreferDirector',
+  components: {
+    PreferDirectorItem
+  }
 }
 </script>
 

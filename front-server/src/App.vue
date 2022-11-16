@@ -5,7 +5,9 @@
       <nav>
         <router-link id="nav-menu" :to="{ name: 'HomeView' }">홈</router-link>
         <router-link id="nav-menu" :to="{ name: 'RecommendView' }">추천 콘텐츠</router-link>
-        <router-link id="nav-menu" :to="{ name: 'WantToSeeView' }">내가 찜한 콘텐츠</router-link> 
+        <router-link id="nav-menu" :to="{ name: 'WantToSeeView' }">내가 찜한 콘텐츠</router-link>
+        <router-link id="nav-menu" :to="{ name: 'SignUpView' }">SignUp</router-link>
+        <router-link id="nav-menu" :to="{ name: 'LoginView' }">Login</router-link>
       </nav>
     </header>
 
