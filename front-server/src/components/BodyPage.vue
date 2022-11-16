@@ -1,6 +1,7 @@
 <template>
   <div>
     <BoxOffice/>
+    <AwardsMovie/>
     <PreferDirector/>
     <PreferActor/>
     <AverageScore/>
@@ -9,6 +10,7 @@
 
 <script>
 import BoxOffice from '@/components/BodyBoxOffice'
+import AwardsMovie from '@/components/BodyAwards'
 import PreferDirector from '@/components/BodyPreferDirector'
 import PreferActor from '@/components/BodyPreferActor'
 import AverageScore from '@/components/BodyAverageScore'
@@ -19,7 +21,8 @@ export default {
     BoxOffice,
     PreferDirector,
     PreferActor,
-    AverageScore
+    AverageScore,
+    AwardsMovie
   }
 }
 </script>

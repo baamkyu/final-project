@@ -2,15 +2,18 @@
   <div>
     <hr>
     <h3>/userid/님이 선택한 /actorname/배우의 작품</h3>
-    <p>poster</p>
-    <p>title</p>
-    <p>별점★</p>
+    <PreferActorItem/>
   </div>
 </template>
 
 <script>
+import PreferActorItem from '@/components/BodyPreferActorItem'
+
 export default {
-  name: 'PreferActor'
+  name: 'PreferActor',
+  components: {
+    PreferActorItem
+  }
 }
 </script>
 
