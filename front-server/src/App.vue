@@ -89,4 +89,11 @@ nav a.router-link-exact-active {
 .howmanyscore{
   color: crimson;
 }
+
+* {
+  font-family: 'HSSaemaul-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 </style>
