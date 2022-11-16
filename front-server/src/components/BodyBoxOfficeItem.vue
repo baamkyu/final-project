@@ -1,8 +1,9 @@
 <template>
   <div>
-    <p>{{randomMovie.movie.nations}}</p>
+    <img id="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`">
     <p>{{randomMovie.movie.movieNm}}</p>
-    <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`">
+    <p>{{randomMovie.movie.nations}}</p>
+    <hr>
 
   </div>
 </template>
@@ -27,5 +28,5 @@ export default {
 </script>
 
 <style>
-
+/* CSS grid */
 </style>
