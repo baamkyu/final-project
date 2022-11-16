@@ -18,4 +18,10 @@ class Tmdb_Movie(models.Model):
   vote_average = models.FloatField()
   overview = models.TextField()
   poster_path = models.TextField(null=True)
+
+class Comment(models.Model):
+  movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+  content = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
   
