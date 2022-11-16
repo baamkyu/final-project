@@ -13,9 +13,6 @@ export default {
   components: {
     BoxOfficeItem
   },
-  created() {
-    this.$store.dispatch('getMovie')
-  }
 }
 </script>
 
