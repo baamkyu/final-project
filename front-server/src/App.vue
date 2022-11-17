@@ -1,13 +1,30 @@
 <template>
   <div>
-    <header>
-      <img src="./assets/logo.png" alt="">
+    <header class="navbar-height">
+      <img src="./assets/logo.png" alt="" @click="goHome">
       <nav>
         <router-link id="nav-menu" :to="{ name: 'HomeView' }">홈</router-link>
         <router-link id="nav-menu" :to="{ name: 'RecommendView' }">추천 콘텐츠</router-link>
         <router-link id="nav-menu" :to="{ name: 'WantToSeeView' }">내가 찜한 콘텐츠</router-link>
-        <router-link id="nav-menu" :to="{ name: 'SignUpView' }">SignUp</router-link>
-        <router-link id="nav-menu" :to="{ name: 'LoginView' }">Login</router-link>
+        <router-link v-if="!isLogin" id="nav-menu" :to="{ name: 'SignUpView' }">SignUp</router-link>
+        <router-link v-if="!isLogin" id="nav-menu" :to="{ name: 'LoginView' }">
+          <span class="material-symbols-outlined">login</span>
+          Login
+        </router-link>
+        <button v-else id="nav-menu" @click="logOut">
+          <span class="material-symbols-outlined">logout</span>
+          LogOut
+        </button>
+        <span class="material-symbols-outlined">
+        person
+        </span>{{ this.$store.state.username }}님 반갑습니다.
+        <span class="material-symbols-outlined">
+        menu
+        </span>
+        <span class="material-symbols-outlined">
+        menu_open
+        </span>
+        <!-- <router-link v-if="isLogin" type="button" @click="logOut">LogOut</router-link> -->
       </nav>
     </header>
 
@@ -28,13 +45,34 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    logOut() {
+      this.$store.commit('NULL_TOKEN')
+      alert('로그아웃 되었습니다.')
+    },
+    goHome() {
+      this.$router.push({ name:'HomeView' })
+    },
+  },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
+  }
+}
+
+
+</script>
 
 
 <style>
+
 header {
   position: fixed;
   width:100%;
-  height: 50px;
+  height: 60px;
   padding: 1rem;
   color: white;
   background: black;
@@ -88,6 +126,18 @@ nav a.router-link-exact-active {
 
 .howmanyscore{
   color: crimson;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+button {
+  background-color: black;
+  color: white;
 }
 
 * {

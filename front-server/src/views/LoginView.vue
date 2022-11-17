@@ -6,7 +6,7 @@
       <input type="text" id="username" v-model="username">
 
       <label for="password">password : </label>
-      <input type="text" id="password" v-model="password">
+      <input type="password" id="password" v-model="password">
 
       <input type="submit" value="logIn">
     </form>
@@ -16,6 +16,12 @@
 <script>
 export default {
   name: 'LoginView',
+  data() {
+    return {
+      username: null,
+      password: null,
+    }
+  },
   components: {
   },
   methods: {
@@ -24,7 +30,8 @@ export default {
       const password = this.password
 
       const payload = {
-        username, password
+        username,
+        password,
       }
       this.$store.dispatch('logIn', payload)
     }

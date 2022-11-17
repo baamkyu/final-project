@@ -1,11 +1,16 @@
 <template>
   <li>
-    <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`">
+    <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`" @click="goMovieDetail">
     <div class="css-title">{{randomMovie.movie.movieNm}}</div>
     <div>
       {{randomMovie.movie.prdtYear}} ·
       {{randomMovie.movie.nations}}
     </div>
+    <router-link :to="{ 
+      name: 'DetailView',
+      params: { id: randomMovie.id } }">
+      [DETAIL]
+      </router-link>
     <hr>
   </li>
 </template>
@@ -16,36 +21,41 @@ export default {
   props: {
     randomMovie: Object,
   },
+  methods:{
+    goMovieDetail() {
+      console.log(this.src)
+    }
+  }
 }
 </script>
 
 <style>
 #poster {
-  /* display: flex; */
+  display: flex;
   /* flex-direction: row; */
   position: relative;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #eae9e8;
-    border-radius: 5px;
-    background: #f8f8f8;
-    -webkit-transition: 300ms;
-    transition: 300ms;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eae9e8;
+  border-radius: 5px;
+  background: #f8f8f8;
+  -webkit-transition: 300ms;
+  transition: 300ms;
 }
 /* CSS grid */
 li {
   display: inline-block;
   vertical-align: top;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   /* width: 33.333333333333336%; */
   padding: 0 5px;
-  margin: 0 0 24px;
+  margin: 0 0 24px; 
 }
+
 
 .poster {
   vertical-align: top;

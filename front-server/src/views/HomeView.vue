@@ -1,6 +1,12 @@
 <template>
   <div id="top-space">
     <BodyPage/>
+    <span class="material-symbols-outlined">
+      menu
+    </span>
+    <span class="material-symbols-outlined">
+    favorite
+    </span>
   </div>
 </template>
 
@@ -13,10 +19,19 @@ export default {
     BodyPage
   }
 }
+
 </script>
 
 <style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
 #top-space {
-  padding-top: 30px;
+  padding-top: 60px;
 }
 </style>
