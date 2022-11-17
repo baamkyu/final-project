@@ -35,7 +35,7 @@
 
     <hr>
     <footer>
-      <h3 class="howmanyscore">지금까지 /count/개의 평가가 쌓였어요.</h3>
+      <h3 class="howmanyscore">지금까지 {{allCommentsCount}}개의 평가가 쌓였어요.</h3>
       <p>SSAFY 8기</p>
       <p>김관섭 임범규</p>
     </footer>
@@ -60,6 +60,9 @@ export default {
     isLogin() {
       return this.$store.getters.isLogin
     },
+    allCommentsCount() {
+      return this.$store.getters.allCommentsCount
+    }
   }
 }
 

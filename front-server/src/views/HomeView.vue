@@ -17,6 +17,14 @@ export default {
   name: 'HomeView',
   components: {
     BodyPage
+  },
+  created() {
+    this.commentCount()
+  },
+  methods: {
+    commentCount() {
+      this.$store.dispatch('commentCount')
+    }
   }
 }
 
