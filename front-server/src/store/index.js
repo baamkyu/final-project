@@ -18,6 +18,7 @@ export default new Vuex.Store({
     movies: [],
     randomMovies: [],
     token: null,
+    username: null,
   },
   getters: {
     isLogin(state) {
@@ -31,9 +32,15 @@ export default new Vuex.Store({
       state.randomMovies = randomMovies
     },
     SAVE_TOKEN(state, token) {
-      state.token = token
+      state.token = token.key
+      state.username = token.username
       router.push({name: 'HomeView'})
+
     },
+    NULL_TOKEN(state) {
+      state.token = null
+      router.push({name: 'HomeView'})
+    }
   },
   actions: {
     getMovies(context) {
@@ -41,7 +48,7 @@ export default new Vuex.Store({
         method: 'GET',
         url: `${API_URL}/api/v1/movies/`,
       })
-        .then((res) => {
+        .then((res) => {  
           context.commit('GET_MOVIES', res.data)
         })
         .catch((err) => {
@@ -76,10 +83,13 @@ export default new Vuex.Store({
         }
       })
         .then(res => {
-          context.commit('SAVE_TOKEN', res.data.key)
+          context.commit('SAVE_TOKEN', {'key': res.data.key, 'username': username})
         })
         .catch(err => console.log(err))
-    } 
+    },
+    // logOut({commit}){
+    //   commit('LOGOUT')
+    // }
   },
   modules: {
   }

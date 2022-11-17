@@ -17,7 +17,7 @@ def movie_list(request):
 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
-    movie = Tmdb_Movie.objects.get(movie_id=movie_pk)
+    movie = Tmdb_Movie.objects.get(id=movie_pk)
     serializer = MovieSerializerTMDB(movie)
     return Response(serializer.data)
 
