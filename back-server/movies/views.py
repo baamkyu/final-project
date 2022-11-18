@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .models import Movie, Tmdb_Movie, Comment
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer
 from rest_framework import status
 
 
@@ -22,10 +22,11 @@ def movie_detail(request, movie_pk):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def comment_list(request):
+def comment_list(request, movie_pk):
+    movie=Tmdb_Movie.objects.get(pk=movie_pk)
     if request.method == 'GET':
         comments = get_list_or_404(Comment)
-        serializer = CommentSerializer(Comment, many=True)
+        serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
 @api_view(['GET', 'DELETE', 'PUT'])
@@ -45,3 +46,9 @@ def comment_detail(request, comment_pk):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+@api_view(['GET'])
+def all_comment_list(request):
+    comments = Comment.objects.all()
+    serializer = CommentListSerializer(comments, many=True)
+    return Response(serializer.data)
