@@ -26,6 +26,8 @@ export default {
         password2: null,
       }
     },
+  components:{
+  },
   methods: {
     signUp() {
       const username = this.username
@@ -37,9 +39,7 @@ export default {
         password1: password1,
         password2: password2,
       }
-
       this.$store.dispatch('signUp', payload)
-
     }
   }
 }
@@ -48,6 +48,6 @@ export default {
 
 <style>
 #top-space {
-  padding-top: 60px;
+  padding-top: 75px;
 } 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="trigger">
     <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`" @click="goMovieDetail">
     <div class="css-title">{{randomMovie.movie.movieNm}}</div>
     <div>
@@ -13,6 +13,7 @@
       </router-link>
     <hr>
   </li>
+  
 </template>
 
 <script>
@@ -73,4 +74,8 @@ li {
     font-size: 15px;
     font-weight: 400;
 }
+
+/* 화면 뒤집기 하려고 했는데 실패함
+.hidden { display: none; }
+.trigger:hover + .hidden { display: inline; } */
 </style>

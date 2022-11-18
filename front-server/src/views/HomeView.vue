@@ -40,6 +40,6 @@ export default {
 }
 
 #top-space {
-  padding-top: 60px;
+  padding-top: 75px;
 }
 </style>
