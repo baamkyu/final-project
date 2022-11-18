@@ -21,6 +21,7 @@ export default new Vuex.Store({
     username: null,
     comments: [],
     allcomments: [],
+    isLogin: null,
   },
   getters: {
     isLogin(state) {
@@ -36,11 +37,15 @@ export default new Vuex.Store({
       const randomMovies = _.sampleSize(state.movies, 10)
       state.randomMovies = randomMovies
     },
+    // 로그인 되면 Home으로 이동(token값이 생기면)
     SAVE_TOKEN(state, token) {
-      state.token = token.key
-      state.username = token.username
+      state.token = token
       router.push({name: 'HomeView'})
     },
+    SAVE_USER(state, username) {
+      state.username = username
+    },
+    // 로그아웃 되면 Home으로 이동(token값이 null이 되면)
     NULL_TOKEN(state) {
       state.token = null
       state.username = null
@@ -80,6 +85,8 @@ export default new Vuex.Store({
       })
         .then(res => {
           context.commit('SAVE_TOKEN', res.data.key)
+          // username님 환영합니다 하기 위해 USER_NAME을 따로 받아줌
+          context.commit('SAVE_USER', username)
         })
         .catch(err => console.log(err))
     },
@@ -94,7 +101,9 @@ export default new Vuex.Store({
         }
       })
         .then(res => {
-          context.commit('SAVE_TOKEN', {'key': res.data.key, 'username': username})
+          context.commit('SAVE_TOKEN', res.data.key)
+          // username님 환영합니다 하기 위해 USER_NAME을 따로 받아줌
+          context.commit('SAVE_USER', username)
         })
         .catch(err => console.log(err))
     },
@@ -122,9 +131,6 @@ export default new Vuex.Store({
           console.log(err)
         })
     }
-    // logOut({commit}){
-    //   commit('LOGOUT')
-    // }
   },
   modules: {
   }

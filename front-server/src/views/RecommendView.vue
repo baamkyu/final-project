@@ -36,7 +36,7 @@ export default {
 
 <style>
 #top-space {
-  padding-top: 60px;
+  padding-top: 75px;
 }
 
 .card {
