@@ -17,11 +17,13 @@
 </template>
 
 <script>
+
 export default {
   name: 'BoxOfficeItem',
   props: {
     randomMovie: Object,
   },
+  // methods 제거해도 되는건지 확인 필요
   methods:{
     goMovieDetail() {
       console.log(this.src)

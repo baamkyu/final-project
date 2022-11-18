@@ -11,23 +11,36 @@
     <p>청소년 관람 불가 :{{ movie?.adult }}</p>
     <p>평점 : {{ movie?.vote_average }}</p>
     <p>줄거리 :{{ movie?.overview }}</p>
+    
+    <hr>
+    <DetailComment/>
+    <CreateComment :movie-pk="moviePK"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import DetailComment from '@/components/DetailComment'
+import CreateComment from '@/components/CreateComment'
+
 
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'DetailView',
+  components: {
+    DetailComment,
+    CreateComment,
+  },
   data(){
     return {
       movie: null,
+      moviePK: null,
     }
   },
   created() {
     this.getMovieDetail()
+    this.getComment()
   },
   methods: {
     getMovieDetail() {
@@ -36,13 +49,16 @@ export default {
         url: `${API_URL}/api/v1/movies/${this.$route.params.id}`
       })
       .then((res) => {
-        console.log(res)
         this.movie = res.data
+        this.moviePK = this.movie.id
       })
       .catch((err) => {
         this.$router.push('/404')
         console.log(err)
       })
+    },
+    getComment() {
+      this.$store.dispatch('getComment', this.$route.params.id)
     }
   }
 }
