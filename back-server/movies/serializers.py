@@ -22,13 +22,27 @@ class MovieListSerializer(serializers.ModelSerializer):
         model = Tmdb_Movie
         fields = '__all__'
 
+# 전체 커멘트 리스트
+class CommentListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+# 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
         read_only_fields = ('movie',)
 
-class CommentListSerializer(serializers.ModelSerializer):
+# 특정 영화에 달린 커멘트 리스트 가져오기
+class MovieCommentSerializer(serializers.ModelSerializer):
+    comment_set = CommentListSerializer(many=True)
     class Meta:
-        model = Comment
-        fields = '__all__'
+        model = Tmdb_Movie
+        fields = ('id', 'comment_set',)
+
+
+
+
+
