@@ -19,10 +19,15 @@ export default new Vuex.Store({
     randomMovies: [],
     token: null,
     username: null,
+    comments: [],
+    allcomments: [],
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
+    },
+    allCommentsCount(state) {
+      return state.allcomments.length
     }
   },
   mutations: {
@@ -40,6 +45,12 @@ export default new Vuex.Store({
       state.token = null
       state.username = null
       router.push({name: 'HomeView'})
+    },
+    GET_COMMENT(state, comments) {
+      state.comments = comments
+    },
+    COMMENT_COUNT(state, comments) {
+      state.allcomments = comments
     }
   },
   actions: {
@@ -87,6 +98,30 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err))
     },
+    getComment(context, movie_pk) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/${movie_pk}/comments/`
+      })
+          .then((res) => {
+            context.commit('GET_COMMENT', res.data)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+    },
+    commentCount(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/comments/`,
+      })
+        .then((res) => {
+          context.commit('COMMENT_COUNT', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
     // logOut({commit}){
     //   commit('LOGOUT')
     // }
