@@ -1,18 +1,24 @@
 <template>
-  <li>
-    <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`" @click="goMovieDetail">
-    <div class="css-title">{{randomMovie.movie.movieNm}}</div>
-    <div>
-      {{randomMovie.movie.prdtYear}} ·
-      {{randomMovie.movie.nations}}
-    </div>
-    <router-link :to="{ 
-      name: 'DetailView',
-      params: { id: randomMovie.id } }">
-      [DETAIL]
-      </router-link>
-    <hr>
-  </li>
+  <div>
+    <li class="trigger">
+      <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`" @click="goMovieDetail">
+      <div class="css-title">{{randomMovie.movie.movieNm}}</div>
+      <div>
+        {{randomMovie.movie.prdtYear}} ·
+        {{randomMovie.movie.nations}}
+      </div>
+      <router-link :to="{ 
+        name: 'DetailView',
+        params: { id: randomMovie.id } }">
+        [DETAIL]
+        </router-link>
+      <hr>
+    </li>
+    <li class="hidden">
+      This message show up
+    </li>
+  </div>
+  
 </template>
 
 <script>
@@ -71,4 +77,7 @@ li {
     font-size: 15px;
     font-weight: 400;
 }
+
+.hidden { display: none; }
+.trigger:hover + .hidden { display: inline; }
 </style>

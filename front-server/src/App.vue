@@ -3,19 +3,19 @@
     <header class="navbar-height">
       <img src="./assets/logo.png" alt="" @click="goHome">
       <nav>
-        <router-link id="nav-menu" :to="{ name: 'HomeView' }">홈</router-link>
-        <router-link id="nav-menu" :to="{ name: 'RecommendView' }">추천 콘텐츠</router-link>
-        <router-link id="nav-menu" :to="{ name: 'WantToSeeView' }">내가 찜한 콘텐츠</router-link>
-        <router-link v-if="!isLogin" id="nav-menu" :to="{ name: 'SignUpView' }">SignUp</router-link>
-        <router-link v-if="!isLogin" id="nav-menu" :to="{ name: 'LoginView' }">
+        <router-link id="nav-menu nav-left" :to="{ name: 'HomeView' }">홈</router-link>
+        <router-link id="nav-menu nav-left" :to="{ name: 'RecommendView' }">추천 콘텐츠</router-link>
+        <router-link id="nav-menu nav-left" :to="{ name: 'WantToSeeView' }">내가 찜한 콘텐츠</router-link>
+        <router-link v-if="!isLogin" id="nav-menu nav-right" :to="{ name: 'SignUpView' }">SignUp</router-link>
+        <router-link v-if="!isLogin" id="nav-menu nav-right" :to="{ name: 'LoginView' }">
           <span class="material-symbols-outlined">login</span>
           Login
         </router-link>
-        <button v-else id="nav-menu" @click="logOut">
+        <button v-else id="nav-menu nav-right" @click="logOut">
           <span class="material-symbols-outlined">logout</span>
           LogOut
         </button>
-        <span class="material-symbols-outlined">
+        <span class="material-symbols-outlined" id="nav-right">
         person
         </span>{{ this.$store.state.username }}님 반갑습니다.
         <span class="material-symbols-outlined">
@@ -96,12 +96,16 @@ img {
 
 }
 
-nav {
-  z-index: 1;
-  margin-left: auto;
+#nav-right {
+  /* z-index: 1; */
+  /* margin-left: auto; */
   text-align: right;
 }
 
+#nav-left {
+  /* margin-right: auto; */
+  text-align: left;
+}
 
 nav a {
   /* font-weight: bold; */

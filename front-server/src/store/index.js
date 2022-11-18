@@ -35,10 +35,10 @@ export default new Vuex.Store({
       state.token = token.key
       state.username = token.username
       router.push({name: 'HomeView'})
-
     },
     NULL_TOKEN(state) {
       state.token = null
+      state.username = null
       router.push({name: 'HomeView'})
     }
   },
