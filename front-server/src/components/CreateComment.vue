@@ -1,0 +1,50 @@
+<template>
+    <!-- CreateComment < DetailView -->
+    <div>
+        <h3>게시글 작성</h3>
+        <form @submit.prevent="createComment">
+            <label for="content">내용 : </label>
+            <textarea type="text" id="content" cols="30" rows="10" v-model="content"></textarea><br>
+            <input type="submit" id="submit">
+        </form>
+    </div>
+</template>
+
+<script>
+import axios from 'axios'
+const API_URL = 'http://127.0.0.1:8000'
+
+export default {
+    name: 'CreateComment',
+    data() {
+        return {
+            content: null
+        }
+    },
+    props: {
+        moviePk: Number,
+    },
+    methods: {
+        createComment() {
+            const content = this.content
+            if (!content) {
+                alert('제목을 입력해주세요!')
+                return
+            }
+            axios({
+                method: 'post',
+                url: `${API_URL}/api/v1/movies/${this.moviePk}/comments/`,
+                data: {content},
+            })
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((err) => console.log(err))
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>
