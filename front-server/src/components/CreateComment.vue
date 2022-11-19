@@ -18,7 +18,8 @@ export default {
     name: 'CreateComment',
     data() {
         return {
-            content: null
+            content: null,
+            like_users: [],
         }
     },
     props: {
@@ -27,6 +28,7 @@ export default {
     methods: {
         createComment() {
             const content = this.content
+            const like_users = this.like_users
             if (!content) {
                 alert('내용을 입력해주세요!')
                 return
@@ -34,13 +36,12 @@ export default {
             axios({
                 method: 'post',
                 url: `${API_URL}/api/v1/movies/${this.moviePk}/comments/`,
-                data: {content},
+                data: {content, like_users},
                 headers: {
                     Authorization: `Token ${this.$store.state.token}`
                 }
             })
                 .then(() => {
-                    console.log(this.$route.params.id)
                     // 원래 url주소로 redirect 시키기
                     this.$router.go(this.$router.currentRoute)
                 })

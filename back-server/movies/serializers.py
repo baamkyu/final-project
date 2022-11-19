@@ -33,7 +33,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
-        read_only_fields = ('movie', 'user')
+        read_only_fields = ('movie', 'user', 'like_users',)
 
 # 특정 영화에 달린 커멘트 리스트 가져오기
 class MovieCommentSerializer(serializers.ModelSerializer):
@@ -69,6 +69,11 @@ class MovieAllInfoSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ('id', 'genres', 'actors', 'directors',)
 
+# 6. 코멘트 좋아요 구현
+class CommentLike(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('like_users',)
 
 
 

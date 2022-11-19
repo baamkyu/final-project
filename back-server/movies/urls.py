@@ -9,4 +9,8 @@ urlpatterns = [
     path('movies/<int:movie_pk>/details/', views.detail_list),
     path('comments/', views.all_comment_list),
     path('comments/<int:comment_pk>/', views.comment_detail),
+
+    # 6. 코멘트 좋아요 구현
+    path('comments/<int:comment_pk>/likes/', views.comment_like),
 ]
+

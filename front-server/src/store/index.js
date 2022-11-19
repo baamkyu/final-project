@@ -22,6 +22,8 @@ export default new Vuex.Store({
     comments: [],
     allcomments: [],
     isLogin: null,
+    // dddddddddddddddddddd
+    userPK: null,
   },
   getters: {
     isLogin(state) {
@@ -93,6 +95,8 @@ export default new Vuex.Store({
     logIn(context, payload) {
       const username = payload.username
       const password = payload.password
+      // dddddddddddddddddddddddd
+      const userPK = payload.id
       axios({
         method: 'post',
         url: `${API_URL}/accounts/login/`,

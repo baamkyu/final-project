@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .models import Movie, Tmdb_Movie, Comment
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike
 from rest_framework import status
 
 @api_view(['GET'])
@@ -69,13 +69,16 @@ def all_comment_list(request):
     return Response(serializer.data)
 
 
-# 커멘트 생성 view 함수
-# @api_view(['POST'])
-# def comment_create(request, movie_pk):
-#     # article = Article.objects.get(pk=article_pk)
-#     print(movie_pk)
-#     movie = get_object_or_404(Tmdb_Movie, pk=movie_pk)
-#     serializer = MovieCommentSerializer(data=request.data)
-#     if serializer.is_valid(raise_exception=True):
-#         serializer.save(movie=movie)
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+# 6. 코멘트 좋아요 구현
+@api_view(['POST', 'GET'])
+def comment_like(request, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+
+    if request.method =='POST':
+        if comment.like_users.filter(pk=request.user.pk).exists():
+            comment.like_users.remove(request.user)
+        else:
+            comment.like_users.add(request.user)
+    print(comment)
+    serializer = CommentLike(comment)
+    return Response(serializer.data)
