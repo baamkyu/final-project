@@ -10,30 +10,35 @@
         <router-link id="nav-menu" class="here :active" :to="{ name: 'WantToSeeView' }">내가 찜한 콘텐츠</router-link>
       </div>
     </div>
-
+<!-- RESET CSS 해보기!! -->
     <div class="nav-right">
       <!-- 로그인 되어 있지 않으면 SignUp, Login 출력 -->
       <div class="nav-right-menu">
         <router-link v-if="!isLogin" id="nav-menu" class="here" :to="{ name: 'SignUpView' }">
-          SignUp
+          회원가입
         </router-link>
         <router-link v-if="!isLogin" id="nav-menu" :to="{ name: 'LoginView' }">
-          <span class="material-symbols-outlined">login
-            <span>Login</span>
+          <span class="material-symbols-outlined">Login
+            <span>로그인  </span>
           </span>
         </router-link>
         <!-- 로그인 되어있으면 LogOut, userID 출력 -->
         <button v-if="isLogin" id="nav-menu" @click="logOut">
           <span class="material-symbols-outlined">logout
-            <span>LogOut</span>
+            <span>로그아웃</span>
           </span>
         </button>
+
           <span v-if="isLogin" class="material-symbols-outlined">person
             <span>
               <router-link id="nav-menu" 
                 :to="{ name: 'MyPageView', params: { username: this.$store.state.username } }">{{ this.$store.state.username }}
               </router-link>님 반갑습니다.
             </span> 
+
+          <!-- <span v-if="isLogin" id="nav-menu" class="material-symbols-outlined">person
+            <span class="username-font">{{ this.$store.state.username }}님 반갑습니다.</span> -->
+
           </span>
         <!-- 메뉴는 로그인 상관 없이 출력 -->
           <span class="material-symbols-outlined">
@@ -175,6 +180,17 @@ export default {
 button {
   background-color: black;
   color: white;
+}
+
+.username-font {
+  font-family: FlowerSalt;
+}
+
+@font-face {
+    font-family: 'FlowerSalt';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/FlowerSalt.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
 </style>
