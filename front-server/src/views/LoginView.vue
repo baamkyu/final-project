@@ -4,16 +4,18 @@
     <form @submit.prevent="logIn">
       <label for="username">username : </label>
       <input type="text" id="username" v-model="username">
-
+      
       <label for="password">password : </label>
       <input type="password" id="password" v-model="password">
 
       <input type="submit" value="logIn">
+      <router-link :to="{ name: 'SignUpView' }">회원가입하러 가기!</router-link>
     </form>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'LoginView',
   data() {

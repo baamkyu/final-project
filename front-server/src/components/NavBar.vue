@@ -2,7 +2,7 @@
   <nav class="nav">
     <div class="nav-left">
       <div>
-        <img class="nav-logo" src="../assets/logo.png" alt="" @click="goHome">
+        <img class="nav-logo" src="../assets/삼조로고1.png" alt="" @click="goHome">
       </div>
       <div class="nav-left-menu">
         <router-link id="nav-menu" :to="{ name: 'HomeView' }">홈</router-link>
@@ -87,6 +87,7 @@ export default {
 }
 
 .nav-logo {
+  padding: 3px;
   cursor: pointer;
 }
 
