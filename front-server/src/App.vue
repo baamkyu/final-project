@@ -1,8 +1,6 @@
 <template>
   <div>
-    <header>
-      <NavBar/>
-    </header>
+    <NavBar/>
     <body>
       <router-view/>
     </body>
@@ -39,6 +37,7 @@ export default {
 
 
 <style>
+
 
 header {
   position: fixed;

@@ -18,7 +18,7 @@ import BoxOfficeItem from '@/components/BodyBoxOfficeItem'
 export default {
   name: 'BoxOffice',
   components: {
-    BoxOfficeItem
+    BoxOfficeItem,
   },
   computed: {
     randomMovies() {
