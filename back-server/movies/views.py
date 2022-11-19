@@ -5,9 +5,8 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .models import Movie, Tmdb_Movie, Comment
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer
 from rest_framework import status
-
 
 @api_view(['GET'])
 def movie_list(request):
@@ -21,14 +20,29 @@ def movie_detail(request, movie_pk):
     serializer = MovieSerializerTMDB(movie)
     return Response(serializer.data)
 
-# 특정 영화에 달린 커멘트 리스트 가져오기
-@api_view(['GET'])
+# 특정 영화에 달린 커멘트 리스트 가져오기(GET)/ 커멘트 작성 후저장 (POST)
+@api_view(['GET', 'POST'])
 def comment_list(request, movie_pk):
     movie=Tmdb_Movie.objects.get(pk=movie_pk)
     if request.method == 'GET':
         # comments = get_list_or_404(movie)
         serializer = MovieCommentSerializer(movie)
         return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(movie=movie, user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+# 특정 영화에 대한 장르, 배우, 감독, 리스트
+@api_view(['GET'])
+def detail_list(request, movie_pk):
+    movie = Tmdb_Movie.objects.get(movie_id=movie_pk)
+    if request.method == 'GET':
+        serialzer = MovieAllInfoSerializer(movie)
+        return Response(serialzer.data)
+    
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def comment_detail(request, comment_pk):
@@ -56,11 +70,12 @@ def all_comment_list(request):
 
 
 # 커멘트 생성 view 함수
-@api_view(['POST'])
-def comment_create(request, movie_pk):
-    # article = Article.objects.get(pk=article_pk)
-    movie = get_object_or_404(Tmdb_Movie, pk=movie_pk)
-    serializer = MovieCommentSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+# @api_view(['POST'])
+# def comment_create(request, movie_pk):
+#     # article = Article.objects.get(pk=article_pk)
+#     print(movie_pk)
+#     movie = get_object_or_404(Tmdb_Movie, pk=movie_pk)
+#     serializer = MovieCommentSerializer(data=request.data)
+#     if serializer.is_valid(raise_exception=True):
+#         serializer.save(movie=movie)
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
