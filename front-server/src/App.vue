@@ -38,7 +38,6 @@ export default {
 
 <style>
 
-
 header {
   position: fixed;
   width:100%;
@@ -60,8 +59,11 @@ footer {
   text-align: center;
 }
 
+
 .howmanyscore{
   color: crimson;
 }
+
+
 
 </style>
