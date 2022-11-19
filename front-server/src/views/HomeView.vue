@@ -18,12 +18,21 @@ export default {
   components: {
     BodyPage
   },
+  computed: {
+    username() {
+      return this.$store.state.username
+    }
+  },
   created() {
     this.commentCount()
+    this.getUserDetail()
   },
   methods: {
     commentCount() {
       this.$store.dispatch('commentCount')
+    },
+    getUserDetail() {
+      this.$store.dispatch('getUserDetail', this.username)
     }
   }
 }

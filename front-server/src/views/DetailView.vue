@@ -2,15 +2,19 @@
   <div id="top-space">
     <h1>Detail</h1>
     <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
-    <p>제목 : {{ movie?.movie?.movieNm }}</p>
-    <p>상영 시간 : {{ movie?.movie?.showTm }}분</p>
-    <p>개봉 년도 : {{ movie?.movie?.prdtYear }}년</p>
-    <p>감독 : {{ movie?.movie?.directors }}</p>
-
-
-
-    <p>출연 배우 : {{ movie?.movie?.actors }}</p>
-    <p>장르 : {{ movie?.movie?.genres }}</p>
+    
+    <!-- 10. 보고싶어요 구현하기 -->
+    <form @submit.prevent="clickWant">
+      <input v-if="!alreadyWant" type="submit" value="보고 싶어요">
+      <input v-else type="submit" value="보고 싶어요 취소">
+    </form>
+    
+    <p>제목 : {{ movie?.movie.movieNm }}</p>
+    <p>상영 시간 : {{ movie?.movie.showTm }}분</p>
+    <p>개봉 년도 : {{ movie?.movie.prdtYear }}년</p>
+    <p>감독 : {{ movie?.movie.directors }}</p>
+    <p>출연 배우 : {{ movie?.movie.actors }}</p>
+    <p>장르 : {{ movie?.movie.genres }}</p>
     <p>청소년 관람 불가 :{{ movie?.adult }}</p>
     <p>평점 : {{ movie?.vote_average }}</p>
     <p>줄거리 :{{ movie?.overview }}</p>
@@ -40,11 +44,14 @@ export default {
       movie: null,
       moviePK: null,
       directors: [],
+      alreadyWant: Number,
     }
   },
   created() {
     this.getMovieDetail()
     this.getComment()
+    // 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)
+    this.checkWant()
   },
   methods: {
     getMovieDetail() {
@@ -56,7 +63,6 @@ export default {
         this.movie = res.data
         this.moviePK = this.movie.id
         this.directors = this.movie.movie.genres
-        console.log(this.directors)
       })
       .catch((err) => {
         this.$router.push('/404')
@@ -65,6 +71,34 @@ export default {
     },
     getComment() {
       this.$store.dispatch('getComment', this.$route.params.id)
+    },
+    // 10. 보고싶어요 구현하기 - 클릭시 보고 싶어요 상태 변경하기
+    clickWant() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/movies/${this.$route.params.id}/wants/`,
+        headers: {
+                    Authorization: `Token ${this.$store.state.token}`
+                }
+      })
+        .then(() => {
+          this.alreadyWant = !this.alreadyWant
+        })
+        .catch((err) => console.log(err))
+    },
+    // 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)
+    checkWant() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/${this.$route.params.id}/wants/`,
+        headers: {
+                    Authorization: `Token ${this.$store.state.token}`
+                }
+      })
+        .then((res) => {
+          this.alreadyWant = res.data.wantlist.includes(this.$store.state.userPK)
+        })
+        .catch((err) => console.log(err))
     }
   }
 }

@@ -7,6 +7,7 @@ import LoginView from '@/views/LoginView'
 import SignUpView from '@/views/SignUpView'
 import DetailView from '@/views/DetailView'
 import NotFound404 from '@/views/NotFound404View'
+import MyPageView from '@/views/MyPageView'
 // import store from '../store/index.js'
 
 Vue.use(VueRouter)
@@ -63,6 +64,12 @@ const routes = [
     path: '/signup',
     name: 'SignUpView',
     component: SignUpView
+  },
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  {
+    path: '/profile/:username',
+    name: 'MyPageView',
+    component: MyPageView
   },
   {
     path: '/movies/:id',

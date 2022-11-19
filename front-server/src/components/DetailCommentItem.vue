@@ -1,6 +1,11 @@
 <template>
   <div>
     <p>{{comment.content}}</p>
+    <span>작성자 : 
+      <router-link
+                :to="{ name: 'MyPageView', params: { username: comment.author } }">{{comment.author}}
+      </router-link>
+    </span>
     <!-- # 6. 코멘트 좋아요 구현 -->
     <form @submit.prevent="clickLike">
       <label for="likecnt">좋아요 : {{likecnt}}</label>
@@ -24,9 +29,12 @@ export default {
     },
     data() {
       return {
-        likecnt : this.comment.like_users.length,
-        alreadyLike : this.comment.like_users.includes(),
+        likecnt : Number,
+        alreadyLike : Number,
       }
+    },
+    created() {
+      this.countLike()
     },
     // 6. 코멘트 좋아요 구현
     methods: {
@@ -39,7 +47,6 @@ export default {
                 }
         })
           .then((res) => {
-            console.log(res)
             this.likecnt = res.data.like_users.length
             this.alreadyLike = !this.alreadyLike
             })
@@ -56,9 +63,8 @@ export default {
                 }
         })
           .then((res) => {
-            console.log(res)
             this.likecnt = res.data.like_users.length
-            this.alreadyLike = !this.alreadyLike
+            this.alreadyLike = res.data.like_users.includes(this.$store.state.userPK)
             })
             .catch((err) => 
             console.log(err)
