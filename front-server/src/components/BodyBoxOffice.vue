@@ -37,12 +37,17 @@ export default {
 </script>
 
 <style>
-* {
-  font-family: 'HSSaemaul-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+/* h3 {
+  font-family: 'GangwonEduPowerExtraBoldA';
+} */
+
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
+
 /* .moviebox{
   display: flex;
   flex-direction: row;
