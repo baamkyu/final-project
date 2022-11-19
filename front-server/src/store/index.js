@@ -20,15 +20,17 @@ export default new Vuex.Store({
     token: null,
     username: null,
     comments: [],
+    // 8. 총 커맨트 개수 세기
     allcomments: [],
     isLogin: null,
-    // dddddddddddddddddddd
+    // 7. 유저 pk 가져오기
     userPK: null,
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
     },
+    // 8. 총 커맨트 개수 세기
     allCommentsCount(state) {
       return state.allcomments.length
     }
@@ -56,8 +58,17 @@ export default new Vuex.Store({
     GET_COMMENT(state, comments) {
       state.comments = comments
     },
+    // 8. 총 커맨트 개수 세기
     COMMENT_COUNT(state, comments) {
       state.allcomments = comments
+    },
+    // 7. 유저 pk 가져오기
+    GET_USER_DETAIL(state, user_pk) {
+      state.userPK = user_pk
+    },
+    // 9. 커멘트 추가하기
+    CREATE_COMMENT(state, comment) {
+      state.allcomments.push(comment)
     },
     // CHECK_LOGIN(state, isLogin) {
       
@@ -98,8 +109,6 @@ export default new Vuex.Store({
     logIn(context, payload) {
       const username = payload.username
       const password = payload.password
-      // dddddddddddddddddddddddd
-      const userPK = payload.id
       axios({
         method: 'post',
         url: `${API_URL}/accounts/login/`,
@@ -126,6 +135,7 @@ export default new Vuex.Store({
             console.log(err)
           })
     },
+    // 8. 총 커맨트 개수 세기
     commentCount(context) {
       axios({
         method: 'get',
@@ -137,8 +147,23 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err)
         })
+    },
+    // 7. 유저 pk 가져오기
+    getUserDetail(context, username) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/user/${username}`,
+      })
+        .then((res) => {
+          context.commit('GET_USER_DETAIL', res.data.id)
+        })
+        .catch((err) => console.log(err))
+    },
+    // 9. 커멘트 추가하기
+    createComment(context, comment) {
+      context.commit('CREATE_COMMENT', comment)
     }
   },
   modules: {
-  }
+  },
 })

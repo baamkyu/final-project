@@ -20,15 +20,21 @@ export default {
         return {
             content: null,
             like_users: [],
+            // author: this.$store.state.username,
         }
     },
     props: {
         moviePk: Number,
     },
     methods: {
+        // 9. 커멘트 추가하기
         createComment() {
             const content = this.content
             const like_users = this.like_users
+            const author = this.$store.state.username
+            
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            console.log(author)
             if (!content) {
                 alert('내용을 입력해주세요!')
                 return
@@ -36,18 +42,20 @@ export default {
             axios({
                 method: 'post',
                 url: `${API_URL}/api/v1/movies/${this.moviePk}/comments/`,
-                data: {content, like_users},
+                data: {content, like_users, author,},
                 headers: {
                     Authorization: `Token ${this.$store.state.token}`
                 }
             })
-                .then(() => {
+                .then((res) => {
                     // 원래 url주소로 redirect 시키기
+                    console.log(author)
                     this.$router.go(this.$router.currentRoute)
+                    this.$store.dispatch('createComment', res.data)
                 })
                 .catch((err) => console.log(err))
-        }
-    }
+        },
+    },
 }
 </script>
 

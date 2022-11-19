@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Director
-
+from accounts.models import User
 
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
@@ -75,6 +75,15 @@ class CommentLike(serializers.ModelSerializer):
         model = Comment
         fields = ('like_users',)
 
+# 7. 유저 pk 가져오기
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id',)
 
-
+# 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)/ 변경사항 저장
+class MovieWant(serializers.ModelSerializer):
+    class Meta:
+        model = Tmdb_Movie
+        fields = ('wantlist',)
 

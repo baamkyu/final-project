@@ -5,8 +5,10 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .models import Movie, Tmdb_Movie, Comment
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike, UserDetailSerializer, MovieWant
 from rest_framework import status
+from django.contrib.auth import get_user_model
+from accounts.models import User
 
 @api_view(['GET'])
 def movie_list(request):
@@ -79,6 +81,28 @@ def comment_like(request, comment_pk):
             comment.like_users.remove(request.user)
         else:
             comment.like_users.add(request.user)
-    print(comment)
+    
     serializer = CommentLike(comment)
+    return Response(serializer.data)
+
+# 7. 유저 pk 가져오기
+@api_view(['GET'])
+def user_detail(request, username):
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    serializer = UserDetailSerializer(person)
+    return Response(serializer.data)
+
+# 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)/ 변경사항 저장
+@api_view(['POST', 'GET'])
+def movie_want(request, movie_pk):
+    movie = Tmdb_Movie.objects.get(pk=movie_pk)
+
+    if request.method == 'POST':
+        if movie.wantlist.filter(pk=request.user.pk).exists():
+            movie.wantlist.remove(request.user)
+        else:
+            movie.wantlist.add(request.user)
+    
+    serializer = MovieWant(movie)
     return Response(serializer.data)

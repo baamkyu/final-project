@@ -29,7 +29,11 @@
           </span>
         </button>
           <span v-if="isLogin" class="material-symbols-outlined">person
-            <span>{{ this.$store.state.username }}님 반갑습니다.</span> 
+            <span>
+              <router-link id="nav-menu" 
+                :to="{ name: 'MyPageView', params: { username: this.$store.state.username } }">{{ this.$store.state.username }}
+              </router-link>님 반갑습니다.
+            </span> 
           </span>
         <!-- 메뉴는 로그인 상관 없이 출력 -->
           <span class="material-symbols-outlined">
