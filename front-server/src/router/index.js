@@ -7,18 +7,22 @@ import LoginView from '@/views/LoginView'
 import SignUpView from '@/views/SignUpView'
 import DetailView from '@/views/DetailView'
 import NotFound404 from '@/views/NotFound404View'
-import store from '../store/index.js'
+// import store from '../store/index.js'
 
 Vue.use(VueRouter)
 
 const requireAuth = () => (from, to, next) => {
-  const token = localStorage.getItem('token')
+  const JSONtoken = JSON.parse(localStorage.getItem('vuex'))
+  const token = JSONtoken.token
   // 로그인 되어있으면 next로 이동
   if (token) {
-    store.state.isLogin = true
     return next()
-  } // 로그인 안 되어있으면 로그인 페이지로 이동
+  }else{ // 로그인 안 되어있으면 로그인 페이지로 이동
+  alert('로그인이 필요한 서비스입니다.')
   next('/login')
+  // 어디로 갈 지 담겨있음
+  // next('from.fullPath')}
+}
 }
 
 const routes = [

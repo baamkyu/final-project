@@ -12,6 +12,7 @@
       <input type="password" id="password2" v-model="password2">
       
       <input type="submit" value="SignUp">
+      <router-link :to="{ name: 'LoginView' }">로그인하러 가기!</router-link>
     </form>
   </div>
 </template>
@@ -43,7 +44,6 @@ export default {
     }
   }
 }
-// }
 </script>
 
 <style>

@@ -1,8 +1,6 @@
 <template>
   <div>
-    <header>
-      <NavBar/>
-    </header>
+    <NavBar/>
     <body>
       <router-view/>
     </body>

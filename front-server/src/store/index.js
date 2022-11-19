@@ -56,7 +56,10 @@ export default new Vuex.Store({
     },
     COMMENT_COUNT(state, comments) {
       state.allcomments = comments
-    }
+    },
+    // CHECK_LOGIN(state, isLogin) {
+      
+    // }
   },
   actions: {
     getMovies(context) {
