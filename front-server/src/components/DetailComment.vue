@@ -20,7 +20,7 @@ export default {
     computed: {
       comments() {
         return this.$store.state.comments.comment_set
-      }
+      },
     }
 }
 </script>
