@@ -4,14 +4,26 @@ from django.conf import settings
 class Genre(models.Model):
   genre = models.CharField(max_length=20)
 
+  def __str__(self):
+    return self.genre
+
 class Nation(models.Model):
   nation = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.nation
 
 class Director(models.Model):
   director = models.CharField(max_length=20)
 
+  def __str__(self):
+    return self.director
+
 class Actor(models.Model):
   actor = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.actor
  
 class Movie(models.Model):
   movieNm = models.CharField(max_length=100)

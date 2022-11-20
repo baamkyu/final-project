@@ -37,6 +37,20 @@ def comment_list(request, movie_pk):
             serializer.save(movie=movie, user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+# 12. 코멘트 삭제하기 구현, 13. 코멘트 수정하기 구현
+@api_view(['PUT', 'DELETE'])
+def comment_edit_del(request, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    if request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 # 특정 영화에 대한 장르, 배우, 감독, 리스트
 @api_view(['GET'])
 def detail_list(request, movie_pk):
@@ -85,11 +99,19 @@ def comment_like(request, comment_pk):
     serializer = CommentLike(comment)
     return Response(serializer.data)
 
-# 7. 유저 pk 가져오기
-@api_view(['GET'])
+# 7. 유저 pk 가져오기, 11. 유저간 팔로우 구현
+@api_view(['GET', 'POST'])
 def user_detail(request, username):
     User = get_user_model()
     person = User.objects.get(username=username)
+
+    if request.method == 'POST':
+        if person != request.user.username:
+            if person.followers.filter(pk=request.user.pk).exists():
+                person.followers.remove(request.user)
+            else:
+                person.followers.add(request.user)
+
     serializer = UserDetailSerializer(person)
     return Response(serializer.data)
 

@@ -12,10 +12,14 @@ urlpatterns = [
 
     # 6. 코멘트 좋아요 구현
     path('comments/<int:comment_pk>/likes/', views.comment_like),
-    # 7. 유저 pk 가져오기
+    
+    # 7. 유저 pk 가져오기 & 11. 유저간 팔로우 구현
     path('user/<str:username>/', views.user_detail),
     
     # 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)
     path('movies/<int:movie_pk>/wants/', views.movie_want),
+
+    # 12. 코멘트 삭제하기 구현, 13. 코멘트 수정하기 구현
+    path('comments/<int:comment_pk>/edit_delete/', views.comment_edit_del), 
 ]
 
