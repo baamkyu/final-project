@@ -11,7 +11,7 @@
     </div>
     <router-link :to="{ 
       name: 'DetailView',
-      params: { id: randomMovie.id } }">
+      params: { id: randomMovie?.id } }">
       [DETAIL]
       </router-link>
     <hr>
@@ -29,7 +29,7 @@ export default {
   // methods 제거해도 되는건지 확인 필요
   methods:{
     goMovieDetail() {
-      console.log(this.src)
+      this.$router.push({ name:'DetailView', params: { id: this.randomMovie?.id } })
     }
   }
 }
@@ -69,7 +69,8 @@ li {
   /* height: 100%; */
   opacity: 1;
   object-fit: cover;
-  transition: opacity 420ms
+  transition: opacity 420ms;
+  cursor: pointer;
 }
 
 .css-title {

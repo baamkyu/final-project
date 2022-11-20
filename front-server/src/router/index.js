@@ -20,11 +20,14 @@ const requireAuth = () => (from, to, next) => {
     return next()
   }else{ // 로그인 안 되어있으면 로그인 페이지로 이동
   alert('로그인이 필요한 서비스입니다.')
-  next('/login')
+  console.log(from)
+  console.log(to)
+  next({ name: 'LoginView', query: { redirect: `http://localhost:8080/${from.fullPath}` } })
   // 어디로 갈 지 담겨있음
   // next('from.fullPath')}
+  }
 }
-}
+
 
 const routes = [
   {

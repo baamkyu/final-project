@@ -6,8 +6,8 @@
     </div>
     <div class="wrapper">
       <div class="card" v-for="movie in movies" :key="movie.id">
-        <small>title: {{ movie.title }}</small>
-        출시년도:{{ movie.prdtYear }}
+        <small>title: {{ movie?.title }}</small>
+        출시년도:{{ movie?.prdtYear }}
       </div>
     </div>
   </div>
