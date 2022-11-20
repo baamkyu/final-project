@@ -42,7 +42,7 @@ export default {
         password2: password2,
       }
       this.$store.dispatch('signUp', payload)
-    }
+    },
   }
 }
 </script>
