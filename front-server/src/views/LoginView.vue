@@ -2,7 +2,7 @@
   <div id="top-space" class="text-center" >
     <h1>로그인</h1>
     <form @submit.prevent="logIn">
-      <label for="username">ID: </label>
+      <label for="username">ID:  </label>
       <input type="text" id="username" v-model="username">
       <br>
       <label for="password">PW </label>

@@ -1,13 +1,16 @@
 <template>
   <div id="top-space">
-    <h1>Detail</h1>
-    <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
-    
-    <!-- 10. 보고싶어요 구현하기 -->
-    <form @submit.prevent="clickWant">
-      <input v-if="!alreadyWant" type="submit" value="보고 싶어요">
-      <input v-else type="submit" value="보고 싶어요 취소">
-    </form>
+    <h1>{{ movie?.movie?.movieNm }}</h1>
+    <div>
+      <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
+      <!-- 10. 보고싶어요 구현하기 -->
+      <form @submit.prevent="clickWant">
+        <input v-if="!alreadyWant" type="submit" class="heart" value="♡">
+        <input v-else type="submit" class="heart" value="♥">
+        <!-- <input v-if="alreadyWant" type="submit" class="material-symbols-outlined Fill:0" value="favorite">
+        <input v-else type="submit" class="material-symbols-outlined Fill:1" value="favorite"> -->
+      </form>
+    </div>
     
     <p>제목 : {{ movie?.movie?.movieNm }}</p>
     <p>상영 시간 : {{ movie?.movie?.showTm }}분</p>
@@ -108,4 +111,10 @@ export default {
 #top-space {
   padding-top: 75px;
 }
+
+.heart {
+  color: red;
+  font-size: 36px;
+}
+
 </style>
