@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr>
-    <h3>평균 별점이 높은 작품</h3>
+    <h3 class="CategoryHeader">평균 별점이 높은 작품</h3>
     <AverageScoreItem/>
   </div>
 </template>
@@ -18,5 +18,8 @@ export default {
 </script>
 
 <style>
-
+.CategoryHeader {
+  margin: 0 0 16px 36px;
+  padding: 0 0 0 32;
+}
 </style>

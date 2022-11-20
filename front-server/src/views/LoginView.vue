@@ -1,14 +1,14 @@
 <template>
-  <div id="top-space">
-    <h1>LoginPage</h1>
+  <div id="top-space" class="text-center" >
+    <h1>로그인</h1>
     <form @submit.prevent="logIn">
-      <label for="username">username : </label>
+      <label for="username">ID: </label>
       <input type="text" id="username" v-model="username">
-      
-      <label for="password">password : </label>
+      <br>
+      <label for="password">PW </label>
       <input type="password" id="password" v-model="password">
-
-      <input type="submit" value="logIn">
+      <br>
+      <input type="submit" value="logIn"><br>
       <router-link :to="{ name: 'SignUpView' }">회원가입하러 가기!</router-link>
     </form>
   </div>
@@ -45,4 +45,8 @@ export default {
 #top-space {
   padding-top: 75px;
 } 
+
+.text-center {
+  text-align: center;
+}
 </style>

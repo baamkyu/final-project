@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>박스오피스 순위</h3>
+    <h3 class="CategoryHeader">박스오피스 순위</h3>
     <ul>
       <BoxOfficeItem
         v-for="randomMovie in randomMovies"
@@ -47,9 +47,8 @@ export default {
     font-weight: normal;
     font-style: normal;
 }
-
 /* .moviebox{
-  display: flex;
-  flex-direction: row;
+  border:30px red;
+  
 } */
 </style>

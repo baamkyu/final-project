@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p>{{comment.content}}</p>
+    <p>{{comment?.content}}</p>
     <span>작성자 : 
       <router-link
-                :to="{ name: 'MyPageView', params: { username: comment.author } }">{{comment.author}}
+                :to="{ name: 'MyPageView', params: { username: comment?.author } }">{{comment?.author}}
       </router-link>
     </span>
     <!-- # 6. 코멘트 좋아요 구현 -->

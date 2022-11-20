@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr>
-    <h3>/userid/님이 선택한 /actorname/배우의 작품</h3>
+    <h3 class="CategoryHeader">/userid/님이 선택한 /actorname/배우의 작품</h3>
     <PreferActorItem/>
   </div>
 </template>
@@ -18,5 +18,8 @@ export default {
 </script>
 
 <style>
-
+.CategoryHeader {
+  margin: 0 0 16px 36px;
+  padding: 0 0 0 32;
+}
 </style>

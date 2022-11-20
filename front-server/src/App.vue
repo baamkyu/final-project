@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="HomePage">
     <NavBar/>
-    <body>
+    <body class="HomePage">
       <router-view/>
     </body>
 
@@ -37,6 +37,10 @@ export default {
 
 
 <style>
+.HomePage {
+  background: black;
+  color: white;
+}
 
 header {
   position: fixed;
