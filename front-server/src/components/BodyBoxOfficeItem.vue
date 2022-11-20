@@ -1,10 +1,13 @@
 <template>
   <li class="trigger">
-    <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`" @click="goMovieDetail">
+    <img class="poster" loading="lazy"
+    :lowsrc="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`"
+    :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie.poster_path}`" @click="goMovieDetail"
+    decoding="async">
     <div class="css-title">{{randomMovie.movie.movieNm}}</div>
     <div>
       {{randomMovie.movie.prdtYear}} ·
-      {{randomMovie.movie.nations}}
+      {{randomMovie.movie.nations[0]}}
     </div>
     <router-link :to="{ 
       name: 'DetailView',
