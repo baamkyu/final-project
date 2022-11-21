@@ -2,21 +2,23 @@
   <div class="MovieCard">
     <!-- 포스터 사진 -->
     <p>포스터 사진</p>
-    <!-- <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie?.poster_path}`" @click="goMovieDetail"> -->
+    <!-- <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${randomMovie?.poster_path}`"> -->
     <!-- 영화 제목 -->
-    <div class="css-title movieInfo">영화 제목</div>
+    <div class="css-title movieInfo">{{movie?.movieNm}}</div>
     <!-- 개봉년도, 개봉국가 -->
     <div class="movieInfo">
-      개봉년도 ·
-      개봉국가
+      {{movie?.openDt}} · 개봉국가
+    </div>
+    <div class="movieInfo">
+      누적관객 {{movie?.audiAcc}} 명
     </div>
     <!-- 영화정보 더보기 (DetailView) -->
     <p>Detail</p>
-    <!-- <router-link :to="{ 
+    <router-link :to="{ 
       name: 'DetailView',
-      params: { id: randomMovie?.id } }" class="movieInfo">
+      params: { id: movie?.movieCd } }" class="movieInfo">
       [영화정보 더보기]
-      </router-link> -->
+      </router-link>
     <hr>
   </div>
   
@@ -26,7 +28,7 @@
 export default {
   name: 'RealBoxOfficeItem',
   props: {
-    // randomMovie: Object,
+    movie: Object,
   },
   components:{
   },

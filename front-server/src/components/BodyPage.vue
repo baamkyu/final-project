@@ -29,7 +29,7 @@ export default {
     AwardsMovie,
     RealBoxOffice,
     // SearchBar
-  }
+  },
 }
 </script>
 
