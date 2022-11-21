@@ -19,6 +19,7 @@
       </router-link> -->
     <hr>
   </div>
+  
 </template>
 
 <script>

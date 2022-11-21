@@ -1,34 +1,36 @@
 <template>
   <div id="top-space">
-    <h1>{{ movie?.movie?.movieNm }}</h1>
-    <div>
-      <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
+    <h1 class="center-item">{{ movie?.movie?.movieNm }}</h1>
+    <div class="">
+      <div class="detail-div">
+        <img class="detail-img center-item" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
+
       <!-- 10. 보고싶어요 구현하기 -->
-      <form @submit.prevent="clickWant">
-        <input v-if="!alreadyWant" type="submit" class="heart" value="♡">
-        <input v-else type="submit" class="heart" value="♥">
-        <!-- <input v-if="alreadyWant" type="submit" class="material-symbols-outlined Fill:0" value="favorite">
-        <input v-else type="submit" class="material-symbols-outlined Fill:1" value="favorite"> -->
-      </form>
+        <form @submit.prevent="clickWant" class="detail-img">
+          <input v-if="!alreadyWant" type="submit" class="heart-div" value="♡">
+          <input v-else type="submit" class="heart-div" value="♥">
+        </form>
+      </div>
     </div>
     
     <!-- 10. 보고싶어요 구현하기 -->
-    <form @submit.prevent="clickWant">
+    <!-- <form @submit.prevent="clickWant">
       <input v-if="!alreadyWant" type="submit" value="보고 싶어요">
       <input v-else type="submit" value="보고 싶어요 취소">
-    </form>
+    </form> -->
+    <!-- 영화 정보 -->
+    <div class="center-item">
+      <p>제목 : {{ movie?.movie.movieNm }}</p>
+      <p>상영 시간 : {{ movie?.movie.showTm }}분</p>
+      <p>개봉 년도 : {{ movie?.movie.prdtYear }}년</p>
+      <p>감독 : <span v-for="(director, idx) in movie?.movie.directors" :key="idx">{{director}}, </span></p>
+      <p>출연 배우 : <span v-for="(actor, idx) in movie?.movie.actors" :key="idx">{{actor}}, </span></p>
+      <p>장르 : <span v-for="(genre, idx) in movie?.movie.genres" :key="idx">{{genre}}, </span></p>
 
-    <p>제목 : {{ movie?.movie.movieNm }}</p>
-    <p>상영 시간 : {{ movie?.movie.showTm }}분</p>
-    <p>개봉 년도 : {{ movie?.movie.prdtYear }}년</p>
-    <p>감독 : <span v-for="(director, idx) in movie?.movie.directors" :key="idx">{{director}}, </span></p>
-    <p>출연 배우 : <span v-for="(actor, idx) in movie?.movie.actors" :key="idx">{{actor}}, </span></p>
-    <p>장르 : <span v-for="(genre, idx) in movie?.movie.genres" :key="idx">{{genre}}, </span></p>
-
-    <p>청소년 관람 불가 :{{ movie?.adult }}</p>
-    <p>평점 : {{ movie?.vote_average }}</p>
-    <p>줄거리 :{{ movie?.overview }}</p>
-  
+      <p>청소년 관람 불가 :{{ movie?.adult }}</p>
+      <p>평점 : {{ movie?.vote_average }}</p>
+      <p>줄거리 :{{ movie?.overview }}</p>
+    </div>
     <hr>
     
     <DetailComment/>
@@ -120,9 +122,11 @@ export default {
   padding-top: 75px;
 }
 
-.heart {
-  color: red;
-  font-size: 36px;
+.center-item {
+  text-align: center;
 }
 
+.detail-div {
+  position: relative;
+}
 </style>

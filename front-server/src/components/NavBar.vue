@@ -2,7 +2,7 @@
   <nav class="nav">
     <div class="nav-left">
       <div>
-        <img class="nav-logo" src="../assets/삼조로고1.png" alt="" @click="goHome">
+        <img class="nav-logo" src="../assets/삼조의 영화방.png" alt="" @click="goHome">
       </div>
       <div class="nav-left-menu">
         <router-link id="nav-menu" :to="{ name: 'HomeView' }">홈</router-link>
@@ -40,10 +40,7 @@
             <span class="username-font">{{ this.$store.state.username }}님 반갑습니다.</span> -->
 
           </span>
-        <!-- 메뉴는 로그인 상관 없이 출력 -->
-          <span class="material-symbols-outlined">
-          menu
-          </span>
+
           <!-- <span class="material-symbols-outlined">
           menu_open
           </span> -->

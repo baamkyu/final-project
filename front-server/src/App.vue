@@ -58,7 +58,7 @@ body {
 }
 
 footer {
-  background-color: black;
+  background-color: blaxck;
   color: gray;
   text-align: center;
 }
