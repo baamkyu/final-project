@@ -1,5 +1,5 @@
 <template>
-  <div id="top-space">
+  <div id="top-space" class="text-center">
     <h1>회원가입</h1>
     <form @submit.prevent="signUp">
       <label for="username">username   : </label>
@@ -12,6 +12,7 @@
       <input type="password" id="password2" v-model="password2">
       
       <input type="submit" value="SignUp">
+      <br>
       <router-link :to="{ name: 'LoginView' }">로그인하러 가기!</router-link>
     </form>
   </div>
@@ -41,7 +42,7 @@ export default {
         password2: password2,
       }
       this.$store.dispatch('signUp', payload)
-    }
+    },
   }
 }
 </script>
@@ -49,5 +50,8 @@ export default {
 <style>
 #top-space {
   padding-top: 75px;
-} 
+}
+.text-center {
+  text-align: center;
+}
 </style>

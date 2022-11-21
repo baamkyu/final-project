@@ -25,6 +25,8 @@ export default new Vuex.Store({
     isLogin: null,
     // 7. 유저 pk 가져오기
     userPK: null,
+    // 찾을 영화
+    // searchMovies: null,
   },
   getters: {
     isLogin(state) {
@@ -33,8 +35,16 @@ export default new Vuex.Store({
     // 8. 총 커맨트 개수 세기
     allCommentsCount(state) {
       return state.allcomments.length
-    }
+    },
   },
+    // 영화 검색
+  //   getFilteredMovie:(state) => (searchMovies) => {
+  //     const filtered = state.movies.filter((movie) => 
+  //       movie.movieNm.toLowerCase().includes(searchMovies.toLowerCase()) || 
+  //       movie.movieNmEn.toLowerCase().includes(searchMovies.toLowerCase()
+  //     ));
+  //     if (filtered) return filtered;
+  // },
   mutations: {
     GET_MOVIES(state, movies) {
       state.movies = movies
@@ -167,3 +177,4 @@ export default new Vuex.Store({
   modules: {
   },
 })
+

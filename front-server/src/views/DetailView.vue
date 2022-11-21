@@ -1,7 +1,16 @@
 <template>
   <div id="top-space">
-    <h1>Detail</h1>
-    <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
+    <h1>{{ movie?.movie?.movieNm }}</h1>
+    <div>
+      <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
+      <!-- 10. 보고싶어요 구현하기 -->
+      <form @submit.prevent="clickWant">
+        <input v-if="!alreadyWant" type="submit" class="heart" value="♡">
+        <input v-else type="submit" class="heart" value="♥">
+        <!-- <input v-if="alreadyWant" type="submit" class="material-symbols-outlined Fill:0" value="favorite">
+        <input v-else type="submit" class="material-symbols-outlined Fill:1" value="favorite"> -->
+      </form>
+    </div>
     
     <!-- 10. 보고싶어요 구현하기 -->
     <form @submit.prevent="clickWant">
@@ -15,6 +24,7 @@
     <p>감독 : <span v-for="(director, idx) in movie?.movie.directors" :key="idx">{{director}}, </span></p>
     <p>출연 배우 : <span v-for="(actor, idx) in movie?.movie.actors" :key="idx">{{actor}}, </span></p>
     <p>장르 : <span v-for="(genre, idx) in movie?.movie.genres" :key="idx">{{genre}}, </span></p>
+
     <p>청소년 관람 불가 :{{ movie?.adult }}</p>
     <p>평점 : {{ movie?.vote_average }}</p>
     <p>줄거리 :{{ movie?.overview }}</p>
@@ -109,4 +119,10 @@ export default {
 #top-space {
   padding-top: 75px;
 }
+
+.heart {
+  color: red;
+  font-size: 36px;
+}
+
 </style>

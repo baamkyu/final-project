@@ -1,24 +1,51 @@
 <template>
   <div>
-    <h3>박스오피스 순위</h3>
-    <ul>
-      <BoxOfficeItem
+    <h3 class="CategoryHeader">박스오피스 순위</h3>
+    <swiper class="swiper" :options="swiperOption">
+      <swiper-slide
         v-for="randomMovie in randomMovies"
-        :key="randomMovie.id"
-        :randomMovie='randomMovie'
-        class="moviebox"
-      />
-    </ul>
+        :key="randomMovie.id">
+        <BoxOfficeItem :randomMovie="randomMovie"/>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+    </swiper>
   </div>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import BoxOfficeItem from '@/components/BodyBoxOfficeItem'
+import "swiper/css/swiper.css"
 
 export default {
   name: 'BoxOffice',
   components: {
     BoxOfficeItem,
+    Swiper,
+    SwiperSlide
+  },
+  data() {
+    return {
+      swiperOption: {
+          // 한 페이지에 몇개?
+          slidesPerView: 5,
+          // 객체 간에 사이 간격
+          spaceBetween: 10,
+          // 1~10 -> 1~10 반복할거임?
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            // 밑에 점 클릭해서 이동 가능?
+            clickable: true
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          }
+        }
+    }
   },
   computed: {
     randomMovies() {
@@ -47,9 +74,21 @@ export default {
     font-weight: normal;
     font-style: normal;
 }
-
 /* .moviebox{
-  display: flex;
-  flex-direction: row;
+  border:30px red;
+  
 } */
+.swiper {
+  height: 600px;
+  width: 100%;
+}
+.swiper-slide {
+  height: 600px;
+  /* width: 100%;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+}
 </style>

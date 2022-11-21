@@ -15,23 +15,23 @@
       <!-- 로그인 되어 있지 않으면 SignUp, Login 출력 -->
       <div class="nav-right-menu">
         <router-link v-if="!isLogin" id="nav-menu" class="here" :to="{ name: 'SignUpView' }">
-          회원가입
+          <span class="material-symbols-outlined">assignment_ind 회원가입</span>
         </router-link>
         <router-link v-if="!isLogin" id="nav-menu" :to="{ name: 'LoginView' }">
           <span class="material-symbols-outlined">Login
-            <span>로그인  </span>
+            <span>로그인</span>
           </span>
         </router-link>
         <!-- 로그인 되어있으면 LogOut, userID 출력 -->
         <button v-if="isLogin" id="nav-menu" @click="logOut">
           <span class="material-symbols-outlined">logout
-            <span>로그아웃</span>
+            <span id="nav-menu">로그아웃</span>
           </span>
         </button>
 
-          <span v-if="isLogin" class="material-symbols-outlined">person
-            <span>
-              <router-link id="nav-menu" 
+          <span v-if="isLogin" class="material-symbols-outlined ">person
+            <span class="username-font" id="nav-menu-username">
+              <router-link class="font-color-white"
                 :to="{ name: 'MyPageView', params: { username: this.$store.state.username } }">{{ this.$store.state.username }}
               </router-link>님 반갑습니다.
             </span> 
@@ -126,6 +126,19 @@ export default {
   gap: 0.1rem;
 }
 
+.nav-menu-username {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+}
+
+.font-color-white{
+  text-decoration: none;
+  color: white;
+}
 .nav-left-menu {
   flex-direction: row;
   display: flex;
@@ -158,6 +171,7 @@ export default {
   margin-right: 20px;
   font-size: 19px;  
   color: white;
+  font-family: NanumSquareNeo-Variable;
 }
 
 .howmanyscore{
@@ -173,7 +187,6 @@ export default {
   margin-right: 10px;
   font-size: 19px;
   justify-content: flex-end;
-  
 }
 
 
@@ -183,12 +196,24 @@ button {
 }
 
 .username-font {
-  font-family: FlowerSalt;
+  font-family: Cafe24Oneprettynight;
 }
 
 @font-face {
     font-family: 'FlowerSalt';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/FlowerSalt.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
