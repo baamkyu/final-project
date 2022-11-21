@@ -6,6 +6,7 @@
     <PreferDirector/>
     <PreferActor/>
     <AverageScore/>
+    <!-- <SearchBar/> -->
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import PreferDirector from '@/components/BodyPreferDirector'
 import PreferActor from '@/components/BodyPreferActor'
 import AverageScore from '@/components/BodyAverageScore'
 import RealBoxOffice from '@/components/RealBoxOffice'
+// import SearchBar from '@/components/SearchBar'
 
 export default {
   name: 'BodyPage',
@@ -25,7 +27,8 @@ export default {
     PreferActor,
     AverageScore,
     AwardsMovie,
-    RealBoxOffice
+    RealBoxOffice,
+    // SearchBar
   }
 }
 </script>

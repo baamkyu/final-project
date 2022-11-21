@@ -86,7 +86,11 @@ export default {
           method: 'delete',
           url: `${API_URL}/api/v1/comments/${this.comment.id}/edit_delete/`,
         })
-        .then(() => this.$router.go(this.$router.currentRoute))
+        .then(() => {
+          this.$store.dispatch('deleteComment')
+          this.$router.go(this.$router.currentRoute)
+        }
+          )
           .catch((err) => console.log(err))
       },
       // 13. 코멘트 수정하기 구현 (클릭시 수정하는 칸 생성)
@@ -100,7 +104,7 @@ export default {
           url: `${API_URL}/api/v1/comments/${this.comment.id}/edit_delete/`,
         })
         .then(() => this.$router.go(this.$router.currentRoute))
-          .catch((err) => console.log(err))
+        .catch((err) => console.log(err))
       },
     }
 }

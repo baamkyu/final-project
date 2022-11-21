@@ -1,53 +1,75 @@
 <template>
-  <div id="nav">
-    <div class="menu-nav">
-      <div class="search-form">
-          <!-- 엔터 클릭시 searchresultshow 실행 -->
-        <b-form-input
-          size="sm"
-          class="mr-sm-2"
-          type="text"
-          placeholder="검색어를 입력해주세요"
-          v-model="keyword"
-          @keyup.enter="searchresultshow(keyword)"
-        ></b-form-input>
-        <!-- 버튼 클릭시 searchresultshow 실행 -->
-        <b-button
-          size="sm"
-          class="my-2 my-sm-0"
-          type="submit"
-          @click="searchresultshow(keyword)"
-        >
-          <b-icon icon="search"></b-icon>
-        </b-button>
-      </div>
+  <div>
+    <!-- 여기서 class="form-control" 은 부트스트랩 사용 -->
+    <input
+      v-model="title"
+      class="form-control"
+      type="text"
+      placeholder="Search for Movies"
+      @keyup.enter="apply"/>
+    <div class="selects">
+      <select
+        v-for="filter in filters"
+        v-model="$data[filter.name]"
+        :key="filter.name"
+        class="form-select">
+        <option
+          v-for="item in filter.items"
+          :key="item">
+          {{ item }}
+        </option>
+      </select>
     </div>
+    <button class="btn btn-primary" @click="apply">Apply</button>
   </div>
 </template>
+
 <script>
 export default {
-  name: "Nav",
-  data() {
-    return {
-      keyword: ''
+  name: 'SearchBar',
+  computed: {
+      randomMovies() {
+        return this.$store.state.randomMovies
     }
   },
-  methods: {
-    search(keyword) {
-      if (keyword !== ''){ //검색어를 입력한 경우
-        this.$router.push({
-          name: "SearchPage",
-          params: {
-            keyword: this.keyword,
-            isResultShow: true,
-          },
-        });
-        this.keyword = ''
-        console.log('"',keyword,'"' + ' 검색')
-      } else {
-        alert('검색어를 입력해주세요!')  //검색어를 입력하지 않은 경우
-      }
-    },
+  data() {
+    return {
+      title: '',
+      filters: [
+        {
+          // 1985년부터 개봉된 영화들 1년 단위로 선택하면 가져오는듯?
+          // name: 'year',
+          // items: (() => {
+          //   const years = []
+          //   const thisYear = randomMovies.getFullYear() // 올해 년도 가져오는듯
+          //   for (let i = thisYear; i>=1985; i--) {
+          //     years.push(i)
+          //   }
+          //   return years
+          // })()
+        }
+      ]
+    }
   }
-};
+}
 </script>
+
+<style>
+.selects{
+  display: flex;
+  select {
+    width: 120px;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.btn{
+  width:120px;
+  height: 50px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+</style>

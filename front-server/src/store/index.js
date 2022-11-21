@@ -80,6 +80,10 @@ export default new Vuex.Store({
     CREATE_COMMENT(state, comment) {
       state.allcomments.push(comment)
     },
+    // 12. 코멘트 삭제하기 구현
+    DELETE_COMMENT(state){
+      state.allcomments.pop()
+    }
     // CHECK_LOGIN(state, isLogin) {
       
     // }
@@ -152,7 +156,7 @@ export default new Vuex.Store({
         url: `${API_URL}/api/v1/comments/`,
       })
         .then((res) => {
-          context.commit('COMMENT_COUNT', res.data)
+          context.commit('COx`  MMENT_COUNT', res.data)
         })
         .catch((err) => {
           console.log(err)
@@ -172,7 +176,11 @@ export default new Vuex.Store({
     // 9. 커멘트 추가하기
     createComment(context, comment) {
       context.commit('CREATE_COMMENT', comment)
-    }
+    },
+    // 12. 코멘트 삭제하기 구현
+    deleteComment(context) {
+      context.commit('DELETE_COMMENT')
+    },
   },
   modules: {
   },
