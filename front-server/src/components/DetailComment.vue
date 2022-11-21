@@ -1,6 +1,6 @@
 <template>
+  <!-- 댓글 -->
   <div>
-    <h3>코멘트</h3>
     <DetailCommentItem
       v-for="comment in comments"
       :key="comment.id"
@@ -26,5 +26,11 @@ export default {
 </script>
 
 <style>
-
+.community{
+  padding: 10px;
+  width: 100%;
+  height: 75px;
+  line-height: 160%;
+  border: 1px solid #ddd;
+}
 </style>
