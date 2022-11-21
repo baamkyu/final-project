@@ -1,10 +1,10 @@
 <template>
     <!-- CreateComment < DetailView -->
-    <div>
-        <h3>게시글 작성</h3>
+    <div >
+        <h3>댓글</h3>
         <form @submit.prevent="createComment">
-            <label for="content">내용 : </label>
-            <textarea type="text" id="content" cols="30" rows="10" v-model.trim="content"></textarea><br>
+            <label for="content"></label>
+            <textarea type="text" id="content" cols="30" rows="10" v-model.trim="content" class="community"></textarea><br>
             <input type="submit" id="submit">
         </form>
     </div>

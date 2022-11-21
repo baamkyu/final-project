@@ -1,14 +1,15 @@
 <template>
   <div id="top-space">
     <h1 class="center-item">{{ movie?.movie?.movieNm }}</h1>
-    <div class="">
-      <div class="detail-div">
+    <div class="detail-div">
+      <div>
         <img class="detail-img center-item" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
-
+      </div>
       <!-- 10. 보고싶어요 구현하기 -->
-        <form @submit.prevent="clickWant" class="detail-img">
-          <input v-if="!alreadyWant" type="submit" class="heart-div" value="♡">
-          <input v-else type="submit" class="heart-div" value="♥">
+      <div>
+        <form @submit.prevent="clickWant">
+          <input v-if="!alreadyWant" type="submit" class="detail-div-heart" title="찜하기!" value="♡">
+          <input v-else type="submit" class="detail-div-heart" title="찜목록에서 삭제" value="♥">
         </form>
       </div>
     </div>
@@ -122,11 +123,33 @@ export default {
   padding-top: 75px;
 }
 
-.center-item {
+.center-item {  
   text-align: center;
 }
 
 .detail-div {
-  position: relative;
+  display: flex;
+  /* position: relative; */
+  justify-content: center;
+  padding: 20px;
+}
+
+.absolute-box{
+  /* position: absolute;
+  left: 37%; */
+  
+}
+.detail-div-heart{
+  /* bottom: 0px; */
+  color: red;
+  background: none;
+  /* position: fixed; */
+  /* height: 45px;
+  width: 45px; */
+  font-size: 30px;
+}
+
+p {
+  word-break: keep-all;
 }
 </style>

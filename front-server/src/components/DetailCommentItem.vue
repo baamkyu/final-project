@@ -10,17 +10,25 @@
     <form @submit.prevent="clickLike">
       <label for="likecnt">좋아요 : {{likecnt}}</label>
       <p>
-        <input v-if="alreadyLike" type="submit" value="좋아요 취소">
-        <input v-else type="submit" value="좋아요">
+        <button v-if="alreadyLike" type="submit">
+          <span class="material-symbols-outlined font-size: 10px">좋아요 취소thumb_up_off</span>
+        </button>
+        <button v-else type="submit">
+          <span class="material-symbols-outlined font-size: 3px">좋아요 thumb_up</span>
+        </button>
       </p>
     </form>
     <!-- # 12. 코멘트 삭제하기 구현 - 작성자 일경우 나오게하기!-->
     <form v-if="isSameUser&&!wantEdit" @submit.prevent="deleteComment">
-      <input type="submit" value="삭제">
+      <button type="submit">
+        <span class="material-symbols-outlined">삭제 delete</span>      
+      </button>
     </form>
     <!-- # 13. 코멘트 수정하기 구현 - 작성자 일경우 나오게하기! -->
     <form v-if="isSameUser&&!wantEdit" @submit.prevent="clickEdit">
-      <input type="submit" value="수정">
+      <button type="submit">
+        <span class="material-symbols-outlined">수정 edit</span>      
+      </button>
     </form>
     <hr>
   </div>
