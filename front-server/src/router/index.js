@@ -75,6 +75,7 @@ const routes = [
     path: '/movies/:id',
     name: 'DetailView',
     component: DetailView,
+    beforeEnter: requireAuth()
   },
   {
     path: '/404',
