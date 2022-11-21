@@ -49,7 +49,6 @@ export default {
             })
                 .then((res) => {
                     // 원래 url주소로 redirect 시키기
-                    console.log(author)
                     this.$router.go(this.$router.currentRoute)
                     this.$store.dispatch('createComment', res.data)
                 })
