@@ -4,11 +4,14 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
-from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Nation, Director
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike, UserDetailSerializer, MovieWant, GenreSerializer
+from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Nation, Director, award_Movie
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike, UserDetailSerializer, MovieWant, GenreSerializer, AwardMovieSerializer
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from accounts.models import User
+import random
+
+from django_random_queryset import RandomManager
 
 @api_view(['GET'])
 def movie_list(request):
@@ -136,3 +139,16 @@ def genre_list(request):
     print(genres)
     serializer = GenreSerializer(genres, many=True)
     return Response(serializer.data)
+
+# 14. 영화제 수상작 리스트 가져오기
+@api_view(['GET'])
+def award_list(request, festival):
+    movies = award_Movie.objects.filter(festival_name=festival)
+    movies = movies.random(10)
+    print(movies)
+    serializer = AwardMovieSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
+
+

@@ -25,6 +25,9 @@ urlpatterns = [
     
     # 13. 특정 장르의 영화 리스트 가져오기
     path('genres/', views.genre_list),
-    # path('genres/<int:genre_pk>/', views.genre_movie_list),
+    
+    # 14. 영화제 수상작 리스트 가져오기
+    path('award/movie/<str:festival>/', views.award_list),
+
 ]
 
