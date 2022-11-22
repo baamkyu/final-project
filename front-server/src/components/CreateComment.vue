@@ -1,11 +1,11 @@
 <template>
     <!-- CreateComment < DetailView -->
-    <div >
-        <h3>댓글</h3>
-        <form @submit.prevent="createComment">
+    <div class="comment-area">
+        <h3>몇개의 댓글</h3>
+        <form @submit.prevent="createComment" class="comment-submit">
             <label for="content"></label>
-            <textarea type="text" id="content" cols="30" rows="10" v-model.trim="content" class="community"></textarea><br>
-            <input type="submit" id="submit">
+            <textarea type="text" id="content" cols="30" rows="10" v-model.trim="content" class="comment" placeholder="이 영화의 후기를 남겨주세요!"></textarea><br>
+            <input type="submit" id="submit" class="comment-button" value="등록">
         </form>
     </div>
 </template>
@@ -59,5 +59,40 @@ export default {
 </script>
 
 <style>
+/* .community{
+    word-break: keep-all;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 75px;
+    line-height: 160%;
+} */
+
+.comment-area{
+    margin-left: 20%;
+}
+
+.comment {
+    width: 70%;
+    height: 100px;
+    padding: 10px;
+    background-color: #d0e2bc;
+    font: 1.4em/1.6em;
+    /* margin-left: 52%; */
+    border-left: 6px solid #095484;
+}
+
+.comment-submit {
+    /* display: inline; */
+    /* margin-left:30% */
+    
+}
+
+.comment-button {
+    /* height: 20px;
+    width: 20px; */
+}
 
 </style>

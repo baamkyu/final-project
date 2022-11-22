@@ -1,36 +1,46 @@
 <template>
-  <div>
-    <p>{{comment?.content}}</p>
+  <div class="comment-item-area">
+    <br>
+    <hr>
     <span>작성자 : 
       <router-link
                 :to="{ name: 'MyPageView', params: { username: comment?.author } }">{{comment?.author}}
       </router-link>
     </span>
+    <!-- <span> 좋아요 : {{likecnt}}</span> -->
+    <br>
+    <br>
+    <p>{{comment?.content}}</p>
+    <p>{{comment?.created_at}}</p>
     <!-- # 6. 코멘트 좋아요 구현 -->
-    <form @submit.prevent="clickLike">
-      <label for="likecnt">좋아요 : {{likecnt}}</label>
-      <p>
-        <button v-if="alreadyLike" type="submit">
-          <span class="material-symbols-outlined font-size: 10px">좋아요 취소thumb_up_off</span>
+    <div class="form-inline-block">
+      <form @submit.prevent="clickLike">
+        <!-- <label for="likecnt">좋아요 : {{likecnt}}</label> -->
+        <p class="button-p-size">
+          <button v-if="alreadyLike" type="submit">
+            <span class="blue-thumb material-symbols-outlined">thumb_up</span>
+            <span>{{likecnt}}</span>
+            <span class="material-symbols-outlined"></span>
+          </button>
+          <button v-else type="submit">
+            <span class="material-symbols-outlined">thumb_up</span>
+            <span>{{likecnt}}</span>
+          </button>
+        </p>
+      </form>
+      <!-- # 12. 코멘트 삭제하기 구현 - 작성자 일경우 나오게하기!-->
+        <form v-if="isSameUser&&!wantEdit" @submit.prevent="deleteComment">
+          <button type="submit">
+            <span class="material-symbols-outlined">delete 삭제 </span>      
+          </button>
+        </form>
+      <!-- # 13. 코멘트 수정하기 구현 - 작성자 일경우 나오게하기! -->
+      <form v-if="isSameUser&&!wantEdit" @submit.prevent="clickEdit">
+        <button type="submit">
+          <span class="material-symbols-outlined">edit 수정</span>      
         </button>
-        <button v-else type="submit">
-          <span class="material-symbols-outlined font-size: 3px">좋아요 thumb_up</span>
-        </button>
-      </p>
-    </form>
-    <!-- # 12. 코멘트 삭제하기 구현 - 작성자 일경우 나오게하기!-->
-    <form v-if="isSameUser&&!wantEdit" @submit.prevent="deleteComment">
-      <button type="submit">
-        <span class="material-symbols-outlined">삭제 delete</span>      
-      </button>
-    </form>
-    <!-- # 13. 코멘트 수정하기 구현 - 작성자 일경우 나오게하기! -->
-    <form v-if="isSameUser&&!wantEdit" @submit.prevent="clickEdit">
-      <button type="submit">
-        <span class="material-symbols-outlined">수정 edit</span>      
-      </button>
-    </form>
-    <hr>
+      </form>
+  </div>
   </div>
 </template>
 
@@ -119,5 +129,21 @@ export default {
 </script>
 
 <style>
+.comment-item-area {
+  margin-left: 20%;
+  margin-right: 20%;
+}
 
+.button-p-size {
+  height: 12px;
+  width: auto;
+}
+
+.form-inline-block{
+  display: flex;
+}
+
+.blue-thumb{
+  color: #1A73E8;
+  }
 </style>

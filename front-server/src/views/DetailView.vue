@@ -1,42 +1,42 @@
 <template>
   <div id="top-space">
-    <h1 class="center-item">{{ movie?.movie?.movieNm }}</h1>
-    <div class="detail-div">
-      <div>
-        <img class="detail-img center-item" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
-      </div>
-      <!-- 10. 보고싶어요 구현하기 -->
-      <div>
-        <form @submit.prevent="clickWant">
-          <input v-if="!alreadyWant" type="submit" class="detail-div-heart" title="찜하기!" value="♡">
-          <input v-else type="submit" class="detail-div-heart" title="찜목록에서 삭제" value="♥">
-        </form>
-      </div>
-    </div>
-    
-    <!-- 10. 보고싶어요 구현하기 -->
-    <!-- <form @submit.prevent="clickWant">
-      <input v-if="!alreadyWant" type="submit" value="보고 싶어요">
-      <input v-else type="submit" value="보고 싶어요 취소">
-    </form> -->
-    <!-- 영화 정보 -->
     <div class="center-item">
-      <p>제목 : {{ movie?.movie.movieNm }}</p>
-      <p>상영 시간 : {{ movie?.movie.showTm }}분</p>
-      <p>개봉 년도 : {{ movie?.movie.prdtYear }}년</p>
-      <p>감독 : <span v-for="(director, idx) in movie?.movie.directors" :key="idx">{{director}}, </span></p>
-      <p>출연 배우 : <span v-for="(actor, idx) in movie?.movie.actors" :key="idx">{{actor}}, </span></p>
-      <p>장르 : <span v-for="(genre, idx) in movie?.movie.genres" :key="idx">{{genre}}, </span></p>
+      <div class="detail-border">
+        <h1>{{ movie?.movie?.movieNm }}</h1>
+        <div class="detail-div">
+          <div>
+            <img class="center-img" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
+          </div>
+          <!-- 10. 보고싶어요 구현하기 -->
+          <div>
+            <form @submit.prevent="clickWant">
+              <input v-if="!alreadyWant" type="submit" class="detail-div-heart" title="찜하기!" value="♡">
+              <input v-else type="submit" class="detail-div-heart" title="찜목록에서 삭제" value="♥">
+            </form>
+          </div>
+        </div>
+      
+      <!-- 영화 정보 -->
+        <div>
+          <p>제목 : {{ movie?.movie.movieNm }}</p>
+          <p>상영 시간 : {{ movie?.movie.showTm }}분</p>
+          <p>개봉 년도 : {{ movie?.movie.prdtYear }}년</p>
+          <p>감독 : <span v-for="(director, idx) in movie?.movie.directors" :key="idx">{{director}}, </span></p>
+          <p>출연 배우 : <span v-for="(actor, idx) in movie?.movie.actors" :key="idx">{{actor}}, </span></p>
+          <p>장르 : <span v-for="(genre, idx) in movie?.movie.genres" :key="idx">{{genre}}, </span></p>
 
-      <p>청소년 관람 불가 :{{ movie?.adult }}</p>
-      <p>평점 : {{ movie?.vote_average }}</p>
-      <p>줄거리 :{{ movie?.overview }}</p>
+          <p>청소년 관람 불가 :{{ movie?.adult }}</p>
+          <p>평점 : {{ movie?.vote_average }}</p>
+          <p>줄거리 :{{ movie?.overview }}</p>
+        </div>
+      </div>
     </div>
     <hr>
     
-    <DetailComment/>
     <CreateComment :movie-pk="moviePK"/>
+    <DetailComment/>
   </div>
+  
 </template>
 
 <script>
@@ -125,6 +125,12 @@ export default {
 
 .center-item {  
   text-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.center-item {  
+  text-align: center;
 }
 
 .detail-div {
@@ -132,6 +138,8 @@ export default {
   /* position: relative; */
   justify-content: center;
   padding: 20px;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .absolute-box{
@@ -147,6 +155,13 @@ export default {
   /* height: 45px;
   width: 45px; */
   font-size: 30px;
+}
+
+.detail-border {
+  border: 2px groove white;
+  padding: 20px;
+  /* border-radius: 16px; */
+  /* box-shadow: inset 0 0 8px black; */
 }
 
 p {
