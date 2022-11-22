@@ -1,5 +1,6 @@
 <template>
-    <div class="MovieCard">
+  <div>
+    <div>
       <!-- 포스터 사진 -->
       <img class="poster" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`">
       <!-- 영화 제목 -->
@@ -16,9 +17,10 @@
         name: 'DetailView',
         params: { id: movie?.movieCd } }" class="movieInfo">
         [영화정보 더보기]
-        </router-link>
+      </router-link>
       <hr>
     </div>
+  </div>
 </template>
 
 <script>

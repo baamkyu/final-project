@@ -8,8 +8,8 @@
         <BoxOfficeItem :randomMovie="randomMovie"/>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-button-prev background-none" slot="button-prev"></div>
+      <div class="swiper-button-next background-none" slot="button-next"></div>
     </swiper>
   </div>
 </template>
@@ -40,6 +40,11 @@ export default {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           },
+          autoplay: {
+            delay : 3000,   // 시간 설정
+            disableOnInteraction : false,  // false로 설정하면 스와이프 후 자동 재생이 비활성화 되지 않음
+          },
+          // centeredSlides : true,
           breakpoints: {
             640: {
               slidesPerView: 2,

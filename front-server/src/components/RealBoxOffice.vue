@@ -8,8 +8,8 @@
         <RealBoxOfficeItem :movie="movie"/>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-button-prev background-none" slot="button-prev"></div>
+      <div class="swiper-button-next background-none" slot="button-next"></div>
     </swiper>
   </div>
 </template>
@@ -31,10 +31,6 @@ export default {
   data() {
     return {
       swiperOption: {
-          // 한 페이지에 몇개?
-          slidesPerView: 5,
-          // 객체 간에 사이 간격
-          spaceBetween: 10,
           // 1~10 -> 1~10 반복할거임?
           loop: true,
           pagination: {
@@ -45,8 +41,30 @@ export default {
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
-          }
+          },
+          autoplay: {
+            delay : 3000,   // 시간 설정
+            disableOnInteraction : false,  // false로 설정하면 스와이프 후 자동 재생이 비활성화 되지 않음
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            940: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+            1240: {
+              slidesPerView: 4,
+              spaceBetween: 10,
+            },
+            1560: {
+              slidesPerView: 5,
+              spaceBetween: 10,
+            }
         },
+      },
       BoxOfficeList: Array,
     }
   },
@@ -103,5 +121,9 @@ export default {
   align-items: center;
   text-align: center;
   font-weight: bold;
+}
+
+.swiper-pagination-bullet {
+  background-color: white !important;
 }
 </style>
