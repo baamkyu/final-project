@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Director
+from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Director, award_Movie
 from accounts.models import User
+from django_random_queryset import RandomManager
 
 # 특정 영화 상세정보
 class MovieSerializer(serializers.ModelSerializer):
@@ -14,7 +15,6 @@ class MovieSerializer(serializers.ModelSerializer):
 
 # 영화 상세정보
 class MovieSerializerTMDB(serializers.ModelSerializer):
-    print('*'*50)
     movie = MovieSerializer()
     class Meta:
         model = Tmdb_Movie
@@ -22,10 +22,6 @@ class MovieSerializerTMDB(serializers.ModelSerializer):
 
 # 13. 특정 장르의 영화 리스트 가져오기
 class GenreSerializer(serializers.ModelSerializer):
-    # movie = MovieSerializer()
-    # print('='*100)
-    # print(movie)
-    # movie = serializers.StringRelatedField(many=True)
     class Meta:
         model : Genre
         fields = '__all__'
@@ -110,4 +106,10 @@ class MovieWant(serializers.ModelSerializer):
     class Meta:
         model = Tmdb_Movie
         fields = ('wantlist',)
+
+# 14. 영화제 수상작 리스트 가져오기
+class AwardMovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = award_Movie
+        fields = '__all__'
 

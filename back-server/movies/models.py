@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django_random_queryset import RandomManager
+
 
 class Genre(models.Model):
   genre = models.CharField(max_length=20)
@@ -51,3 +53,13 @@ class Comment(models.Model):
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_comments')
   author = models.CharField(max_length=20)
+
+class award_Movie(models.Model):
+  titel = models.CharField(max_length=50)
+  adult = models.BooleanField()
+  vote_average = models.FloatField()
+  overview =  models.TextField()
+  poster_path = poster_path = models.TextField(null=True)
+  release_date = models.CharField(max_length=4)
+  festival_name = models.CharField(max_length=20)
+  objects = RandomManager()
