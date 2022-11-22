@@ -17,12 +17,12 @@
       <form @submit.prevent="clickLike">
         <!-- <label for="likecnt">좋아요 : {{likecnt}}</label> -->
         <p class="button-p-size">
-          <button v-if="alreadyLike" type="submit">
+          <button v-if="alreadyLike" type="submit" class="thumb-button">
             <span class="blue-thumb material-symbols-outlined">thumb_up</span>
             <span>{{likecnt}}</span>
             <span class="material-symbols-outlined"></span>
           </button>
-          <button v-else type="submit">
+          <button v-else type="submit" class="thumb-button">
             <span class="material-symbols-outlined">thumb_up</span>
             <span>{{likecnt}}</span>
           </button>
@@ -146,4 +146,9 @@ export default {
 .blue-thumb{
   color: #1A73E8;
   }
+
+.thumb-button {
+  background-color: #1C1D1F;
+  border: 1px #1C1D1F solid;
+}
 </style>

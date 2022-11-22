@@ -4,13 +4,8 @@
     <body class="HomePage">
       <router-view/>
     </body>
-
-
-    <hr>
     <footer>
-      <h3 class="howmanyscore">지금까지 {{ allCommentsCount }}개의 평가가 쌓였어요.</h3>
-      <p>SSAFY 8기</p>
-      <p>김관섭 임범규</p>
+      <FooterBar/>
     </footer>
   </div>
 </template>
@@ -18,17 +13,14 @@
 
 <script>
 import NavBar from '@/components/NavBar'
+import FooterBar from '@/components/FooterBar'
 export default {
   methods: {
   },
   components: {
-    NavBar
-  },
-  computed: {
-    allCommentsCount() {
-      return this.$store.getters.allCommentsCount
-    }
-  },
+    NavBar,
+    FooterBar
+  }
 }
 
 
@@ -38,11 +30,11 @@ export default {
 
 <style>
 .HomePage {
-  background: black;
+  background: rgb(28,29,31);
   color: white;
 }
 
-header {
+.header-style {
   position: fixed;
   width:100%;
   height: 75px;
@@ -53,24 +45,6 @@ header {
   /* justify-content: space-between;
   align-items: center; */
 }
-body {
-  /* padding-top: 75px;  */
-}
 
-footer {
-  background-color: black;
-  color: gray;
-  text-align: center;
-}
-
-
-.howmanyscore{
-  background-color: black;
-  color: crimson;
-}
-
-* {
-  background-color: black;
-}
 
 </style>

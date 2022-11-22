@@ -1,22 +1,26 @@
 <template>
-  <div>
-    <p>----------------------------</p>
-    <p>----------------------------</p>
-    <p>----------------------------</p>
-    <p>----------------------------</p>
-    <p>----------------------------</p>  
+  <div id="top-space">
+    <div class="center-item">
+      <span class="material-symbols-outlined account_circle">account_circle</span>
 
-    <!-- # 11. 유저간 팔로우 구현 -->
-    <h3><b>{{this.$route.params.username}}</b> 님의 프로필</h3>
-    <span>팔로우 : {{followCnt}} | 팔로잉 : {{followingCnt}}</span>
-    <form v-if="!isSameUser" @submit.prevent="clickFollow">
-      <span>
-        <input v-if="alreadyFollow" type="submit" value="언팔로우">
-        <input v-else type="submit" value="팔로우">
-      </span>
-    </form>
-
-    <p>보고 싶어요</p> 
+      <!-- # 11. 유저간 팔로우 구현 -->
+      <h3><b>{{this.$route.params.username}}</b> 님의 프로필</h3>
+      <span>팔로우 : {{followCnt}} | 팔로잉 : {{followingCnt}}</span>
+      <br>
+      <br>
+      <!-- 본인 프로필이 아니면 팔로우, 언팔로우 기능 뜨게 하기 -->
+      <form v-if="!isSameUser" @submit.prevent="clickFollow">
+        <button v-if="alreadyFollow" type="submit" class="follow-button">
+          <span class="material-symbols-outlined">person_remove</span>언팔로우
+        </button>
+        <button v-else type="submit" value="팔로우" class="follow-button"> 
+          <span class="material-symbols-outlined">person_add</span>팔로우
+        </button>
+      </form>
+    
+      <br>
+      <p>보고 싶어요</p> 
+    </div>
   </div>
 </template>
 
@@ -98,4 +102,14 @@ export default {
 
 <style>
 
+.follow-button{
+  background-color: rgb(28,29,31);
+  color: white;
+  border: solid 1px white;
+  border-radius: 12px;
+}
+
+.account_circle{
+  font-size: 200px !important;
+}
 </style>
