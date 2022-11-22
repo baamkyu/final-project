@@ -14,7 +14,6 @@
     <!-- 영화정보 더보기 (DetailView) -->
     <a :href='`https://www.themoviedb.org/movie/${movie?.id}`'>[영화정보 더보기]</a>
     <hr>
-    <hr>
   </div>
   
 </template>

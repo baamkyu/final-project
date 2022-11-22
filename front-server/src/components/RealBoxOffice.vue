@@ -9,7 +9,7 @@
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
       <div class="swiper-button-prev background-none" slot="button-prev"></div>
-      <div class="swiper-button-next background-none" slot="button-next"></div>
+      <div class="swiper-button-next background-none" slot="button-next"></div> 
     </swiper>
   </div>
 </template>

@@ -24,9 +24,8 @@
         </router-link>
         <!-- 로그인 되어있으면 LogOut, userID 출력 -->
         <button v-if="isLogin" id="nav-menu" @click="logOut">
-          <span class="material-symbols-outlined">logout
-            <span id="nav-menu">로그아웃</span>
-          </span>
+          <span class="material-symbols-outlined logout-icon">logout</span>
+          <span id="nav-menu">로그아웃</span>
         </button>
 
           <span v-if="isLogin" class="material-symbols-outlined ">person
@@ -194,6 +193,10 @@ button {
 
 .username-font {
   font-family: Cafe24Oneprettynight;
+}
+
+.logout-icon{
+  padding-bottom: -5px;
 }
 
 @font-face {
