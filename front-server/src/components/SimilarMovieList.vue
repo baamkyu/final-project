@@ -1,26 +1,25 @@
 <template>
   <div>    
-    <h3 class="CategoryHeader">비슷한 작품</h3>
-    <swiper class="swiper" :options="swiperOption">
+    <h3 class="CategoryHeader similar-title">비슷한 작품</h3>
+    <swiper class="small-swiper" :options="swiperOption">
       <swiper-slide
         v-for="movie in SimilarMovieList"
         :key="movie.id">
         <SimilarMovieItem :movie="movie"/>
       </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-pagination background-none" slot="pagination"></div>
+      <div class="swiper-button-prev background-none" slot="button-prev"></div>
+      <div class="swiper-button-next background-none" slot="button-next"></div>
     </swiper>
+    <hr>
   </div>
 </template>
 
 <script>
 import SimilarMovieItem from '@/components/SimilarMovieItem'
 import axios from 'axios'
-
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import "swiper/css/swiper.css"
-
 export default {
   name: 'SimilarMovieList',
   components: {
@@ -31,8 +30,6 @@ export default {
   data() {
     return {
       swiperOption: {
-          // 한 페이지에 몇개?
-          slidesPerView: 5,
           // 객체 간에 사이 간격
           spaceBetween: 10,
           // 1~10 -> 1~10 반복할거임?
@@ -42,9 +39,28 @@ export default {
             // 밑에 점 클릭해서 이동 가능?
             clickable: true
           },
+          autoplay: {
+            delay : 3000,   // 시간 설정
+            disableOnInteraction : false,  // false로 설정하면 스와이프 후 자동 재생이 비활성화 되지 않음
+          },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
+          },
+          breakpoints: {
+            940: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1450: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1900: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            }
+
           }
         },
       SimilarMovieList: Array
@@ -78,7 +94,6 @@ export default {
 /* h3 {
   font-family: 'GangwonEduPowerExtraBoldA';
 } */
-
 @font-face {
     font-family: 'GangwonEduPowerExtraBoldA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
@@ -89,14 +104,14 @@ export default {
   border:30px red;
   
 } */
-.swiper {
+.small-swiper {
   height: 600px;
-  width: 100%;
+  width: 65%;
 }
-.swiper-item{
+.small-swiper-item{
   width: 20%;
 }
-.swiper-slide {
+.small-swiper-slide {
   height: 600px;
   /* width: 100%;  */
   display: flex;
@@ -104,5 +119,13 @@ export default {
   align-items: center;
   text-align: center;
   font-weight: bold;
+}
+.background-none{
+  background: none;
+}
+.similar-title{
+  position: relative;
+  left: 16%;
+  top: 8px;
 }
 </style>

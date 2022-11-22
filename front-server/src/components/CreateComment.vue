@@ -91,8 +91,9 @@ export default {
 }
 
 .comment-button {
-    /* height: 20px;
-    width: 20px; */
+    color: white;
+    background: #095484;
+    border-radius: 10px;
 }
 
 </style>

@@ -33,8 +33,8 @@
     </div>
     <hr>
     
-    <CreateComment :movie-pk="moviePK"/>
     <SimilarMovieList :movie-pk="moviePK"/>
+    <CreateComment :movie-pk="moviePK"/>
     <DetailComment/>
   </div>
   
@@ -162,9 +162,9 @@ export default {
 
 .detail-border {
   border: 2px groove white;
-  padding: 20px;
-  /* border-radius: 16px; */
-  /* box-shadow: inset 0 0 8px black; */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 20px red;
 }
 
 p {

@@ -31,13 +31,13 @@
       <!-- # 12. 코멘트 삭제하기 구현 - 작성자 일경우 나오게하기!-->
         <form v-if="isSameUser&&!wantEdit" @submit.prevent="deleteComment">
           <button type="submit">
-            <span class="material-symbols-outlined">delete 삭제 </span>      
+            <span class="material-symbols-outlined">delete</span>      
           </button>
         </form>
       <!-- # 13. 코멘트 수정하기 구현 - 작성자 일경우 나오게하기! -->
       <form v-if="isSameUser&&!wantEdit" @submit.prevent="clickEdit">
         <button type="submit">
-          <span class="material-symbols-outlined">edit 수정</span>      
+          <span class="material-symbols-outlined">edit </span>      
         </button>
       </form>
   </div>
