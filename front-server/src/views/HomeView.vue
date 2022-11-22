@@ -1,12 +1,6 @@
 <template>
   <div id="top-space">
     <BodyPage/>
-    <span class="material-symbols-outlined">
-      menu
-    </span>
-    <span class="material-symbols-outlined">
-    favorite
-    </span>
   </div>
 </template>
 
