@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="CategoryHeader">박스오피스 순위</h3>
-    <swiper class="swiper swiper-item" :options="swiperOption">
+    <swiper class="swiper" :options="swiperOption">
       <swiper-slide
         v-for="randomMovie in randomMovies"
         :key="randomMovie.id">

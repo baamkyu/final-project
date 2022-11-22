@@ -34,6 +34,7 @@
     <hr>
     
     <CreateComment :movie-pk="moviePK"/>
+    <SimilarMovieList :movie-pk="moviePK"/>
     <DetailComment/>
   </div>
   
@@ -43,6 +44,7 @@
 import axios from 'axios'
 import DetailComment from '@/components/DetailComment'
 import CreateComment from '@/components/CreateComment'
+import SimilarMovieList from '@/components/SimilarMovieList'
 
 
 const API_URL = 'http://127.0.0.1:8000'
@@ -52,6 +54,7 @@ export default {
   components: {
     DetailComment,
     CreateComment,
+    SimilarMovieList,
   },
   data(){
     return {

@@ -12,41 +12,38 @@ API_KEY='bd7f98121a9d0436318b3160e3374695'
 def get_movie_datas():
     total_data = []
 
-    for r in range(4, ws.max_row+1):
-    # for r in range(87, 88):
-        movieCd = ws.cell(row=r, column=5).value
-        movie_title_en = ws.cell(row=r, column=6).value
-        year = ws.cell(row=r, column=2).value
-        year = str(year)
+    for r in range(3, ws.max_row+1):
+    # for r in range(3, 4):
+        movie_title_en = ws.cell(row=r, column=4).value
 
         url = f'https://api.themoviedb.org/3/search/movie?api_key={API_KEY}&query={movie_title_en}&language=ko-KR'
 
         movies = requests.get(url).json()
-        # print(movies)
-        for movie in movies['results']:
-            if movie.get('release_date'):
-                tmdb_year = movie['release_date'][:4]
-                    
-                if tmdb_year == year:
-                    print(movie_title_en)
-                    fields = {
-                            'adult': movie['adult'],
-                            'vote_average': movie['vote_average'],
-                            'overview': movie['overview'],
-                            'poster_path': movie['poster_path'],
-                            'movie_id': movieCd
-                            }
-                
-                    data = {
-                            "model": "movies.Tmdb_Movie",
-                            "pk": movie['id'],  
-                            "fields": fields
-                            }
-                
-                    total_data.append(data)
-                    break
+        festival_name = ws.cell(row=r, column=3).value
 
-    with open("tmdb_movie_data1.json", 'w', encoding='utf-8') as w:
+        for movie in movies['results']:   
+            release_date = movie['release_date'][:4]
+            print(movie_title_en)
+            fields = {
+                    'titel': movie['title'],
+                    'adult': movie['adult'],
+                    'vote_average': movie['vote_average'],
+                    'overview': movie['overview'],
+                    'poster_path': movie['poster_path'],
+                    'release_date': release_date,
+                    'festival_name': festival_name
+                    }
+        
+            data = {
+                    "model": "movies.award_Movie",
+                    "pk": movie['id'],  
+                    "fields": fields
+                    }
+        
+            total_data.append(data)
+            break
+
+    with open("award_data.json", 'w', encoding='utf-8') as w:
         json.dump(total_data, w, indent=" ", ensure_ascii=False)
 
 get_movie_datas()

@@ -14,9 +14,20 @@ class MovieSerializer(serializers.ModelSerializer):
 
 # 영화 상세정보
 class MovieSerializerTMDB(serializers.ModelSerializer):
+    print('*'*50)
     movie = MovieSerializer()
     class Meta:
         model = Tmdb_Movie
+        fields = '__all__'
+
+# 13. 특정 장르의 영화 리스트 가져오기
+class GenreSerializer(serializers.ModelSerializer):
+    # movie = MovieSerializer()
+    # print('='*100)
+    # print(movie)
+    # movie = serializers.StringRelatedField(many=True)
+    class Meta:
+        model : Genre
         fields = '__all__'
 
 
@@ -52,7 +63,7 @@ class MovieCommentSerializer(serializers.ModelSerializer):
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         models = Genre
-        fields = '__all__'
+        fields = ('id', 'genre',)
 
 # 전체 배우 리스트
 class ActorSerializer(serializers.ModelSerializer):
@@ -74,6 +85,7 @@ class MovieAllInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = ('id', 'genres', 'actors', 'directors',)
+
 
 # 6. 코멘트 좋아요 구현
 class CommentLike(serializers.ModelSerializer):

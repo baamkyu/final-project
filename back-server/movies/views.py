@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
-from .models import Movie, Tmdb_Movie, Comment
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike, UserDetailSerializer, MovieWant
+from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Nation, Director
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike, UserDetailSerializer, MovieWant, GenreSerializer
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from accounts.models import User
@@ -127,4 +127,12 @@ def movie_want(request, movie_pk):
             movie.wantlist.add(request.user)
     
     serializer = MovieWant(movie)
+    return Response(serializer.data)
+
+# 13. 특정 장르의 영화 리스트 가져오기
+@api_view(['GET'])
+def genre_list(request):
+    genres = Genre.objects.all()
+    print(genres)
+    serializer = GenreSerializer(genres, many=True)
     return Response(serializer.data)
