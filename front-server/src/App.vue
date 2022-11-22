@@ -58,16 +58,19 @@ body {
 }
 
 footer {
-  background-color: blaxck;
+  background-color: black;
   color: gray;
   text-align: center;
 }
 
 
 .howmanyscore{
+  background-color: black;
   color: crimson;
 }
 
-
+* {
+  background-color: black;
+}
 
 </style>

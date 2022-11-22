@@ -1,5 +1,5 @@
 <template>
-  <div class="MovieCard">
+  <div>
     <!-- 포스터 사진 -->
     <div>
       <img class="poster" loading="lazy"
@@ -49,4 +49,5 @@ export default {
 .movieInfo {
   color: white;
 }
+
 </style>

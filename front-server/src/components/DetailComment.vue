@@ -26,11 +26,4 @@ export default {
 </script>
 
 <style>
-.community{
-  padding: 10px;
-  width: 100%;
-  height: 75px;
-  line-height: 160%;
-  border: 1px solid #ddd;
-}
 </style>
