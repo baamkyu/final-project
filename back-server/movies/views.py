@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Nation, Director, award_Movie
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike, UserDetailSerializer, MovieWant, GenreSerializer, AwardMovieSerializer
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, CommentLike, UserDetailSerializer, MovieWant, GenreSerializer, AwardMovieSerializer
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from accounts.models import User
@@ -57,14 +57,6 @@ def comment_edit_del(request, comment_pk):
     elif request.method == 'DELETE':
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-# 특정 영화에 대한 장르, 배우, 감독, 리스트
-@api_view(['GET'])
-def detail_list(request, movie_pk):
-    movie = Tmdb_Movie.objects.get(movie_id=movie_pk)
-    if request.method == 'GET':
-        serialzer = MovieAllInfoSerializer(movie)
-        return Response(serialzer.data)
     
 
 @api_view(['GET', 'DELETE', 'PUT'])
@@ -137,13 +129,12 @@ def movie_want(request, movie_pk):
     serializer = MovieWant(movie)
     return Response(serializer.data)
 
-# 13. 특정 장르의 영화 리스트 가져오기
 @api_view(['GET'])
-def genre_list(request):
-    genres = Genre.objects.all()
-    print(genres)
-    serializer = GenreSerializer(genres, many=True)
+def jin_movie_list(request):
+    movies = Movie.objects.all()
+    serializer = AnotherMovieListSerializer(movies, many=True)
     return Response(serializer.data)
+
 
 # 14. 영화제 수상작 리스트 가져오기
 @api_view(['GET'])

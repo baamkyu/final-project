@@ -12,26 +12,29 @@ API_KEY='bd7f98121a9d0436318b3160e3374695'
 def get_movie_datas():
     total_data = []
 
-    for r in range(3, ws.max_row+1):
+    for r in range(5, ws.max_row+1):
     # for r in range(3, 4):
-        movie_title_en = ws.cell(row=r, column=4).value
+        movie_title_en = ws.cell(row=r, column=8).value
 
         url = f'https://api.themoviedb.org/3/search/movie?api_key={API_KEY}&query={movie_title_en}&language=ko-KR'
 
         movies = requests.get(url).json()
-        festival_name = ws.cell(row=r, column=3).value
+        # festival_name = ws.cell(row=r, column=3).value
 
         for movie in movies['results']:   
             release_date = movie['release_date'][:4]
             print(movie_title_en)
             fields = {
-                    'titel': movie['title'],
-                    'adult': movie['adult'],
+                    'title':  ws.cell(row=r, column=1).value,
+                    'director': ws.cell(row=r, column=2).value,
+                    'year': ws.cell(row=r, column=3).value,
+                    'nation': ws.cell(row=r, column=4).value,
+                    'titleEn': ws.cell(row=r, column=8).value,
+                    'genre': ws.cell(row=r, column=6).value,
+                    'adult': ws.cell(row=r, column=7).value,
                     'vote_average': movie['vote_average'],
                     'overview': movie['overview'],
                     'poster_path': movie['poster_path'],
-                    'release_date': release_date,
-                    'festival_name': festival_name
                     }
         
             data = {

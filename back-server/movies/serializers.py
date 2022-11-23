@@ -3,27 +3,27 @@ from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Director, award_Mo
 from accounts.models import User
 from django_random_queryset import RandomManager
 
+# 13-1. 전체 장르 가져오기
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = '__all__'
+
 # 특정 영화 상세정보
 class MovieSerializer(serializers.ModelSerializer):
-    genres = serializers.StringRelatedField(many=True)
-    directors = serializers.StringRelatedField(many=True)
-    actors = serializers.StringRelatedField(many=True)
-    nations = serializers.StringRelatedField(many=True)
+    genres = GenreSerializer(many=True)
+    # directors = serializers.StringRelatedField(many=True)
+    # actors = serializers.StringRelatedField(many=True)
+    # nations = serializers.StringRelatedField(many=True)
     class Meta:
         model = Movie
         fields = '__all__'
 
 # 영화 상세정보
 class MovieSerializerTMDB(serializers.ModelSerializer):
-    movie = MovieSerializer()
+    movie_id = MovieSerializer()
     class Meta:
         model = Tmdb_Movie
-        fields = '__all__'
-
-# 13. 특정 장르의 영화 리스트 가져오기
-class GenreSerializer(serializers.ModelSerializer):
-    class Meta:
-        model : Genre
         fields = '__all__'
 
 
@@ -33,6 +33,8 @@ class MovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tmdb_Movie
         fields = '__all__'
+
+
 
 
 # 전체 커멘트 리스트
@@ -55,12 +57,6 @@ class MovieCommentSerializer(serializers.ModelSerializer):
         model = Tmdb_Movie
         fields = ('id', 'comment_set',)
 
-# 전체 장르 리스트
-class GenreSerializer(serializers.ModelSerializer):
-    class Meta:
-        models = Genre
-        fields = ('id', 'genre',)
-
 # 전체 배우 리스트
 class ActorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -72,15 +68,6 @@ class DirectorSerializer(serializers.ModelSerializer):
     class Meta:
         models = Director
         fields = '__all__'
-
-# 특정 영화에 대한 장르, 배우, 감독 리스트
-class MovieAllInfoSerializer(serializers.ModelSerializer):
-    genres = GenreSerializer(many=True)
-    actors = ActorSerializer(many=True)
-    directors = DirectorSerializer(many=True)
-    class Meta:
-        model = Movie
-        fields = ('id', 'genres', 'actors', 'directors',)
 
 
 # 6. 코멘트 좋아요 구현
