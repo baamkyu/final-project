@@ -20,16 +20,22 @@
     
       <br>
       <p>보고 싶어요</p> 
+      <WantList/>
     </div>
   </div>
 </template>
 
 <script>
+import WantList from '@/components/WantList'
+
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'MyPageView',
+  components: {
+    WantList
+  },
   data() {
     return {
       followCnt: Number,

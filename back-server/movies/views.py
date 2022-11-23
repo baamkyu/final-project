@@ -45,8 +45,12 @@ def comment_list(request, movie_pk):
 def comment_edit_del(request, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if request.method == 'PUT':
+        print('+++'*30)
+        print(request.data)
         serializer = CommentSerializer(comment, data=request.data)
+        print('---'*30)
         if serializer.is_valid(raise_exception=True):
+            print(',,,'*30)
             serializer.save()
             return Response(serializer.data)
 
@@ -107,7 +111,7 @@ def comment_like(request, comment_pk):
 def user_detail(request, username):
     User = get_user_model()
     person = User.objects.get(username=username)
-
+    
     if request.method == 'POST':
         if person != request.user.username:
             if person.followers.filter(pk=request.user.pk).exists():
@@ -116,6 +120,7 @@ def user_detail(request, username):
                 person.followers.add(request.user)
 
     serializer = UserDetailSerializer(person)
+    print(serializer)
     return Response(serializer.data)
 
 # 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)/ 변경사항 저장
@@ -145,7 +150,6 @@ def genre_list(request):
 def award_list(request, festival):
     movies = award_Movie.objects.filter(festival_name=festival)
     movies = movies.random(10)
-    print(movies)
     serializer = AwardMovieSerializer(movies, many=True)
     return Response(serializer.data)
 

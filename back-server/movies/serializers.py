@@ -41,7 +41,7 @@ class CommentListSerializer(serializers.ModelSerializer):
         model = Comment
         fields = '__all__'
 
-# 
+# 특정 커멘트 CRUD
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
@@ -89,17 +89,19 @@ class CommentLike(serializers.ModelSerializer):
         model = Comment
         fields = ('like_users',)
 
-# 7. 유저 pk 가져오기, 11. 유저간 팔로우 구현
+# 7. 유저 pk 가져오기, 11. 유저간 팔로우 구현, 좋아요 리스트 불러오기
 class UserDetailSerializer(serializers.ModelSerializer):
     
     followings = serializers.StringRelatedField(many=True)
     followers = serializers.StringRelatedField(many=True)
     followings_count = serializers.IntegerField(source='followings.count', read_only=True) # 유저 팔로워 수
     followers_count = serializers.IntegerField(source='followers.count', read_only=True)
+    # wantlist = MovieSerializer(many=True, read_only=True)
+    wantmovies = MovieListSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ('id', 'followings', 'followers', 'followings_count', 'followers_count')
+        fields = ('id', 'followings', 'followers', 'followings_count', 'followers_count', 'wantmovies')
 
 # 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)/ 변경사항 저장
 class MovieWant(serializers.ModelSerializer):
