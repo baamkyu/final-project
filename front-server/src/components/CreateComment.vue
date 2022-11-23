@@ -1,7 +1,8 @@
 <template>
     <!-- CreateComment < DetailView -->
     <div class="comment-area">
-        <h3>몇개의 댓글</h3>
+        <h3 v-if="commentCnt">{{commentCnt}}개의 댓글</h3>
+        <h3 v-else>댓글이 없습니다.</h3>
         <form @submit.prevent="createComment" class="comment-submit">
             <label for="content"></label>
             <textarea type="text" id="content" cols="30" rows="10" v-model.trim="content" class="comment" placeholder="이 영화의 후기를 남겨주세요!"></textarea><br>
@@ -23,6 +24,11 @@ export default {
             // author: this.$store.state.username,
         }
     },
+    computed: {
+        commentCnt() {
+            return this.$store.state.comments.comment_set.length
+        }
+    },
     props: {
         moviePk: Number,
     },
@@ -33,8 +39,6 @@ export default {
             const like_users = this.like_users
             const author = this.$store.state.username
             
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            console.log(author)
             if (!content) {
                 alert('내용을 입력해주세요!')
                 return

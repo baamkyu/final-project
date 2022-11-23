@@ -31,7 +31,6 @@ export default {
   },
   components:{
   },
-  // methods 제거해도 되는건지 확인 필요
   methods:{
     goMovieDetail() {
       this.$router.push({ name:'DetailView', params: { id: this.randomMovie?.id } })
