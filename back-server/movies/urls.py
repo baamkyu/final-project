@@ -6,8 +6,6 @@ urlpatterns = [
     path('movies/<int:movie_pk>/', views.movie_detail),
 
     path('movies/<int:movie_pk>/comments/', views.comment_list),
-    # 특정 영화에 대한 장르, 배우, 감독, 리스트
-    path('movies/<int:movie_pk>/details/', views.detail_list),
     path('comments/', views.all_comment_list),
     path('comments/<int:comment_pk>/', views.comment_detail),
 
@@ -23,10 +21,9 @@ urlpatterns = [
     # 12. 코멘트 삭제하기 구현, 13. 코멘트 수정하기 구현
     path('comments/<int:comment_pk>/edit_delete/', views.comment_edit_del), 
     
-    path('genres/', views.genre_list),
-    
     # 14. 영화제 수상작 리스트 가져오기
     path('award/movie/<str:festival>/', views.award_list),
 
+    path('jinheung/movies/', views.jin_movie_list),
 ]
 
