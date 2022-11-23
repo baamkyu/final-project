@@ -1,9 +1,9 @@
 <template>
   <div>    
-    <h3 class="CategoryHeader">영화제 수상작</h3>
+    <h3 class="CategoryHeader">{{AwardMovieList[0]['festival_name']}} 수상작</h3>
     <swiper class="swiper" :options="swiperOption">
       <swiper-slide
-        v-for="movie in SimilarMovieList"
+        v-for="movie in AwardMovieList"
         :key="movie.id">
         <AwardsItem :movie="movie"/>
       </swiper-slide>
@@ -16,7 +16,8 @@
 
 <script>
 import AwardsItem from '@/components/BodyAwardsItem'
-// import axios from 'axios'
+import axios from 'axios'
+import _ from 'lodash'
 
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import "swiper/css/swiper.css"
@@ -47,29 +48,29 @@ export default {
             prevEl: '.swiper-button-prev'
           }
         },
-      SimilarMovieList: Array
+      AwardMovieList: Array
     }
   },
   created() {
-    // this.getSimilarMovies()
+    this.getAwardMovies()
   },
   methods: {
-    // getSimilarMovies() {
-    //   const API_URL = `https://api.themoviedb.org/3/movie/${this.$route.params.id}/similar`
-    //   const API_KEY = 'bd7f98121a9d0436318b3160e3374695'
-    //   axios({
-    //     method: 'get',
-    //     url: `${API_URL}?api_key=${API_KEY}&language=ko-KR&page=1`,
-    //     params: {
-    //       key: API_KEY,
-    //     }
-    //   })
-    //     .then((res) => {
-    //       console.log(res.data.results)
-    //       this.SimilarMovieList = res.data.results
-    //       }) 
-    //     .catch((err) => console.log(err))
-    // }
+    getAwardMovies() {
+      const API_URL = 'http://127.0.0.1:8000'
+      const festival = ['아카데미', '칸 영화제', '베를린 영화제']
+      const pickFestival = _.sampleSize(festival, 1)[0]
+      console.log(pickFestival)
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/award/movie/${pickFestival}/`,
+      })
+        .then((res) => {
+          this.AwardMovieList = res.data
+          }) 
+        .catch((err) => {
+          console.log(err)
+          })
+    }
   }
 }
 </script>
@@ -104,30 +105,5 @@ export default {
   align-items: center;
   text-align: center;
   font-weight: bold;
-}
-</style>
-
-
-<script>
-import AwardsItem from '@/components/BodyAwardsItem'
-
-export default {
-  name: 'AwardsMovie',
-  components: {
-    AwardsItem
-  }
-}
-</script>
-
-<style>
-.CategoryHeader {
-  margin: 0 0 16px 36px;
-  padding: 0 0 0 32;
-}
-@font-face {
-    font-family: 'TmonMonsori';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 }
 </style>
