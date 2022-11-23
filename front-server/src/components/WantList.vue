@@ -1,10 +1,9 @@
 <template>
-  <div>
-    <WantListItem
-      v-for="movie in wantmovies"
-      :key="movie.id"
-      :movie="movie"
-    />
+  <div class="wantlist-container">
+    <div class="wantlist-item"
+        v-for="movie in wantmovies"
+        :key="movie.id">
+        <WantListItem :movie="movie"/></div>
   </div>
 </template>
 
@@ -44,5 +43,19 @@ export default {
 </script>
 
 <style>
-
+  .wantlist-container{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 298px 298px 298px;
+    grid-gap: 3px;
+    /* padding: 10px; */
+    color: black;
+    /* background-color: #f54; */
+  }
+  .wantlist-item{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #1C1D1F;
+  }
 </style>

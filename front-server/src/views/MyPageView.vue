@@ -19,9 +19,9 @@
       </form>
     
       <br>
-      <p>보고 싶어요</p> 
-      <WantList/>
+    <p>보고 싶어요</p> 
     </div>
+    <WantList/>
   </div>
 </template>
 

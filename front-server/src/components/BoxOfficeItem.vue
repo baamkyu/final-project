@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'RealBoxOfficeItem',
+  name: 'BoxOfficeItem',
   props: {
     movie: Object,
   },

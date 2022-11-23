@@ -1,7 +1,7 @@
 <template>
     <div id= "top-space" class="wrap">
     <form class="login" @submit.prevent="signUp">
-      <h2>Sign-up</h2>
+      <h2 class="login-title">회원가입</h2>
       <div class="sign_sns">
         <li class="login_li"><a class="login_a" href=""><i class="fab fa-instagram"></i></a></li>
         <li class="login_li"><a class="login_a" href=""><i class="fab fa-facebook-f"></i></a></li>
@@ -12,20 +12,20 @@
         <h4 for="username">아이디</h4>
         <input type="text" id="username" placeholder="아이디" v-model="username">
       </div>
-
       <div class="login_pw">
           <h4 for="password">비밀번호</h4>
           <input type="password" id="password" placeholder="비밀번호" v-model="password1">
       </div>
-
       <div class="login_pw">
           <h4 for="password">비밀번호 재확인</h4>
           <input type="password" id="password" placeholder="비밀번호 재확인" v-model="password2">
       </div>
-
-      <div class="submit">
+      <div class="submit" >
         <input type="submit" value="submit">
+        
       </div>
+      <br>
+      <router-link :to="{ name: 'LoginView' }" class="go-loginpage">로그인하러 가기!</router-link>
     </form>
   </div>
 </template>
@@ -55,6 +55,12 @@ export default {
       }
       this.$store.dispatch('signUp', payload)
     },
+    // isPWSame() {
+    //   if (this.password1 != this.password2)
+    //     alert('비밀번호가 일치하지 않습니다.')
+    //     this.password1 = null
+    //     this.password2 = null
+    //   }
   }
 }
 </script>
@@ -88,7 +94,7 @@ export default {
 .login {
   width: 30%;
   height: 600px;
-  background: white;
+  background: rgb(25,26,28);
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -96,8 +102,8 @@ export default {
   flex-direction: column;
 }
 
-h2 {
-  color: tomato;
+.login-title {
+  color: white;
   font-size: 2em;
 }
 .login_sns {
@@ -126,7 +132,7 @@ h2 {
   margin-top: 20px;
   width: 80%;
   text-decoration: none;
-  color: black;
+  color: lightgray;
 }
 
 .login_id input {
@@ -143,7 +149,7 @@ h2 {
   margin-top: 20px;
   width: 80%;
   text-decoration: none;
-  color: black;
+  color: lightgray;
 }
 
 .login_pw input {
@@ -176,9 +182,14 @@ h2 {
   border: 0;
   outline: none;
   border-radius: 40px;
-  background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+  background: linear-gradient(to left, rgb(25,26,28), gray);
   color: white;
   font-size: 1.2em;
   letter-spacing: 2px;
+}
+
+.go-loginpage{
+  color: white;
+  
 }
 </style>

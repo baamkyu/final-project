@@ -19,8 +19,8 @@ export default {
 
 <style>
 .CategoryHeader {
-  margin: 0 0 16px 36px;
-  padding: 0 0 0 32;
+  margin: 0 0 0px 36px;
+  /* padding: 0 0 0 32; */
   font-family: TmonMonsori;
 }
 @font-face {

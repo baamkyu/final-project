@@ -156,7 +156,7 @@ export default new Vuex.Store({
         url: `${API_URL}/api/v1/comments/`,
       })
         .then((res) => {
-          context.commit('COx`  MMENT_COUNT', res.data)
+          context.commit('COMMENT_COUNT', res.data)
         })
         .catch((err) => {
           console.log(err)

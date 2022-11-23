@@ -18,8 +18,5 @@ export default {
 </script>
 
 <style>
-.CategoryHeader {
-  margin: 0 0 16px 36px;
-  padding: 0 0 0 32;
-}
+
 </style>
