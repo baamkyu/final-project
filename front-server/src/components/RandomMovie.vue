@@ -1,30 +1,28 @@
 <template>
   <div>
-    <h3 class="CategoryHeader">ㄹㅇ박스오피스 순위</h3>
+    <h3 class="CategoryHeader">랜덤 영화 추천</h3>
     <swiper class="swiper" :options="swiperOption">
       <swiper-slide
-        v-for="movie in BoxOfficeList"
-        :key="movie.rank">
-        <RealBoxOfficeItem :movie="movie"/>
+        v-for="randomMovie in randomMovies"
+        :key="randomMovie.id">
+        <RandomMovieItem :randomMovie="randomMovie"/>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
       <div class="swiper-button-prev background-none" slot="button-prev"></div>
-      <div class="swiper-button-next background-none" slot="button-next"></div> 
+      <div class="swiper-button-next background-none" slot="button-next"></div>
     </swiper>
   </div>
 </template>
 
 <script>
-import RealBoxOfficeItem from '@/components/RealBoxOfficeItem'
-import axios from 'axios'
-
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import RandomMovieItem from '@/components/RandomMovieItem'
 import "swiper/css/swiper.css"
 
 export default {
-  name: 'RealBoxOffice',
+  name: 'BoxOffice',
   components: {
-    RealBoxOfficeItem,
+    RandomMovieItem,
     Swiper,
     SwiperSlide
   },
@@ -46,6 +44,7 @@ export default {
             delay : 3000,   // 시간 설정
             disableOnInteraction : false,  // false로 설정하면 스와이프 후 자동 재생이 비활성화 되지 않음
           },
+          // centeredSlides : true,
           breakpoints: {
             640: {
               slidesPerView: 2,
@@ -64,31 +63,20 @@ export default {
               spaceBetween: 10,
             }
         },
-      },
-      BoxOfficeList: Array,
+      }
+    }
+  },
+  computed: {
+    randomMovies() {
+      return this.$store.state.randomMovies
     }
   },
   created() {
-    this.getBoxoffic()
+    this.getMovies()
   },
-  // 13. 실시간 박스오피스 정보 가져오기
   methods: {
-    getBoxoffic() {
-      const API_URL = 'https://api.themoviedb.org/3/movie/now_playing'
-      const API_KEY = 'bd7f98121a9d0436318b3160e3374695'
-
-      axios({
-        method: 'get',
-        url: `${API_URL}?api_key=${API_KEY}&language=ko-KR&page=1`,
-        params: {
-          key: API_KEY,
-        }
-      })
-        .then((res) => {
-          console.log(res.data.results)
-          this.BoxOfficeList = res.data.results
-          }) 
-        .catch((err) => console.log(err))
+    getMovies() {
+      this.$store.dispatch('getMovies')
     }
   }
 }
@@ -113,6 +101,9 @@ export default {
   height: 600px;
   width: 100%;
 }
+.swiper-item{
+  width: 15%;
+}
 .swiper-slide {
   height: 600px;
   /* width: 100%;  */
@@ -121,9 +112,5 @@ export default {
   align-items: center;
   text-align: center;
   font-weight: bold;
-}
-
-.swiper-pagination-bullet {
-  background-color: white !important;
 }
 </style>

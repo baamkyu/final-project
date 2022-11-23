@@ -7,7 +7,6 @@
                 :to="{ name: 'MyPageView', params: { username: comment?.author } }">{{comment?.author}}
       </router-link>
     </span>
-    <!-- <span> 좋아요 : {{likecnt}}</span> -->
     <br>
     <br>
     <p>{{comment?.content}}</p>
@@ -15,7 +14,6 @@
     <!-- # 6. 코멘트 좋아요 구현 -->
     <div class="form-inline-block">
       <form @submit.prevent="clickLike">
-        <!-- <label for="likecnt">좋아요 : {{likecnt}}</label> -->
         <p class="button-p-size">
           <button v-if="alreadyLike" type="submit" class="thumb-button">
             <span class="blue-thumb material-symbols-outlined">thumb_up</span>
@@ -30,13 +28,13 @@
       </form>
       <!-- # 12. 코멘트 삭제하기 구현 - 작성자 일경우 나오게하기!-->
         <form v-if="isSameUser&&!wantEdit" @submit.prevent="deleteComment">
-          <button type="submit">
+          <button type="submit" class="comment-icon-button">
             <span class="material-symbols-outlined">delete</span>      
           </button>
         </form>
       <!-- # 13. 코멘트 수정하기 구현 - 작성자 일경우 나오게하기! -->
       <form v-if="isSameUser&&!wantEdit" @submit.prevent="clickEdit">
-        <button type="submit">
+        <button type="submit" class="comment-icon-button">
           <span class="material-symbols-outlined">edit </span>      
         </button>
       </form>
@@ -132,6 +130,11 @@ export default {
 .comment-item-area {
   margin-left: 20%;
   margin-right: 20%;
+}
+
+.comment-icon-button{
+  background: #1C1D1F;
+  border: 1px #1C1D1F solid;
 }
 
 .button-p-size {

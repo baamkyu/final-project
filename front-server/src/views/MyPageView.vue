@@ -5,7 +5,7 @@
 
       <!-- # 11. 유저간 팔로우 구현 -->
       <h3><b>{{this.$route.params.username}}</b> 님의 프로필</h3>
-      <span>팔로우 : {{followCnt}} | 팔로잉 : {{followingCnt}}</span>
+      <span>팔로잉 : {{followCnt}} | 팔로워 : {{followingCnt}}</span>
       <br>
       <br>
       <!-- 본인 프로필이 아니면 팔로우, 언팔로우 기능 뜨게 하기 -->
