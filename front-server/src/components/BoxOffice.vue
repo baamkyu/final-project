@@ -105,6 +105,12 @@ export default {
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* .moviebox{
   border:30px red;
   
@@ -126,4 +132,5 @@ export default {
 .swiper-pagination-bullet {
   background-color: white !important;
 }
+
 </style>

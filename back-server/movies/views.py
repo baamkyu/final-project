@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Nation, Director, award_Movie
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, CommentLike, UserDetailSerializer, MovieWant, GenreSerializer, AwardMovieSerializer
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, CommentLike, UserDetailSerializer, MovieWant, AwardMovieSerializer
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from accounts.models import User
@@ -45,12 +45,8 @@ def comment_list(request, movie_pk):
 def comment_edit_del(request, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if request.method == 'PUT':
-        print('+++'*30)
-        print(request.data)
         serializer = CommentSerializer(comment, data=request.data)
-        print('---'*30)
         if serializer.is_valid(raise_exception=True):
-            print(',,,'*30)
             serializer.save()
             return Response(serializer.data)
 
@@ -112,7 +108,6 @@ def user_detail(request, username):
                 person.followers.add(request.user)
 
     serializer = UserDetailSerializer(person)
-    print(serializer)
     return Response(serializer.data)
 
 # 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)/ 변경사항 저장
@@ -127,12 +122,6 @@ def movie_want(request, movie_pk):
             movie.wantlist.add(request.user)
     
     serializer = MovieWant(movie)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def jin_movie_list(request):
-    movies = Movie.objects.all()
-    serializer = AnotherMovieListSerializer(movies, many=True)
     return Response(serializer.data)
 
 

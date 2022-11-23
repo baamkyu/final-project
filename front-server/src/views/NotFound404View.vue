@@ -17,7 +17,7 @@ export default {
 
 .Page404 {
   display:block;
-  height: 600px;
+  height: 100%;
   weight: 100vw;
   margin-left: auto;
   margin-right: auto;

@@ -23,7 +23,5 @@ urlpatterns = [
     
     # 14. 영화제 수상작 리스트 가져오기
     path('award/movie/<str:festival>/', views.award_list),
-
-    path('jinheung/movies/', views.jin_movie_list),
 ]
 

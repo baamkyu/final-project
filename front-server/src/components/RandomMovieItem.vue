@@ -12,7 +12,7 @@
         </form>
       </div> -->
       <!-- 영화 제목 -->
-      <div class="css-title movieInfo">{{randomMovie?.movie?.movieNm}}</div>
+      <div class="movieInfo-title">{{randomMovie?.movie?.movieNm}}</div>
       <!-- 개봉년도, 개봉국가 -->
       <div class="movieInfo">
         {{randomMovie?.movie?.prdtYear}} ·
@@ -87,9 +87,6 @@ export default {
     color: #292a32;
     font-size: 15px;
     font-weight: 400;
-}
-.movieInfo {
-  color: white;
 }
 
 </style>

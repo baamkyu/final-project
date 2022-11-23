@@ -29,7 +29,7 @@
         </button>
 
           <span v-if="isLogin" class="material-symbols-outlined ">person
-            <span class="username-font" id="nav-menu-username">
+            <span class="username-font" id="nav-menu">
               <router-link class="font-color-white"
                 :to="{ name: 'MyPageView', params: { username: this.$store.state.username } }">{{ this.$store.state.username }}
               </router-link>님 반갑습니다.
@@ -167,7 +167,7 @@ export default {
   margin-right: 20px;
   font-size: 19px;  
   color: white;
-  font-family: NanumSquareNeo-Variable;
+  font-family: 'Happiness-Sans-Title';
 }
 
 .howmanyscore{
@@ -217,5 +217,10 @@ button {
     font-weight: normal;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 </style>

@@ -1,51 +1,38 @@
 <template>
   <div id="top-space">
-    <div class="search-wrapper">
-      <input type="text" v-model="search" placeholder="Search title.."/>
-          <label>Search title:</label>
+    <h1>맞춤 영화 찾기</h1>
+    <div class="d-flex flex-wrap">
+    <div v-for="time in times" :key="time" class="px-3 mb-3" @click="clickBox(time)">
+      <button class="noClick" :class="{'clicked' : timeLst.includes(time)}"> {{ time }} </button>
     </div>
-    <div class="wrapper">
-      <div class="card" v-for="movie in movies" :key="movie.id">
-        <small>title: {{ movie?.title }}</small>
-        출시년도:{{ movie?.prdtYear }}
-      </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'RecommendView',
-  data() {
-    return {
-      movies: [
-        {title: '미이라', prdtYear: 2010, id:1},
-        {title: '범죄도시', prdtYear: 2018, id:2},
-        {title: 'ironman', prdtYear: 2000, id:3}
-      ]
-    }
-  },
-  computed: {
-    filteredMovies() {
-      return this.movies.filter(p => {
-        return p.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
-      });
+    data: function() {
+      return {
+        genres: ["장르종류"],
+        genre: '',
+        years: [],
+        year: '',
+        nations: ["해외 영화", "국내 영화"],
+        nation: '',
+      }
+    },
+    methods: {
+      // clickGenre: function(genre){
+      //   if (this.genre.includes(genre)){
+      //     this.genreData = this.genre.indexOf(genre)
+      //     this.
+      //   }
+      // }
     }
   }
-}
 </script>
 
 <style>
-#top-space {
-  padding-top: 75px;
-}
 
-.card {
-    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-    max-width: 124px;
-    margin: 12px;
-    transition: .15s all ease-in-out;
-    &:hover {
-      transform: scale(1.1);
-    }
-}
 </style>

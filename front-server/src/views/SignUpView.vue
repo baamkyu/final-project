@@ -2,25 +2,20 @@
     <div id= "top-space" class="wrap">
     <form class="login" @submit.prevent="signUp">
       <h2 class="login-title">회원가입</h2>
-      <div class="sign_sns">
-        <li class="login_li"><a class="login_a" href=""><i class="fab fa-instagram"></i></a></li>
-        <li class="login_li"><a class="login_a" href=""><i class="fab fa-facebook-f"></i></a></li>
-        <li class="login_li"><a class="login_a" href=""><i class="fab fa-twitter"></i></a></li>
-      </div>
 
       <div class="login_id">
         <h4 for="username">아이디</h4>
-        <input type="text" id="username" placeholder="아이디" v-model="username">
+        <input type="text" id="username" placeholder="아이디를 입력해주세요." v-model="username">
       </div>
       <div class="login_pw">
           <h4 for="password">비밀번호</h4>
-          <input type="password" id="password" placeholder="비밀번호" v-model="password1">
+          <input type="password" id="password" placeholder="비밀번호를 입력해주세요." v-model="password1">
       </div>
       <div class="login_pw">
           <h4 for="password">비밀번호 재확인</h4>
-          <input type="password" id="password" placeholder="비밀번호 재확인" v-model="password2">
+          <input type="password" id="password" placeholder="비밀번호를 다시 입력해주세요." v-model="password2">
       </div>
-      <div class="submit" >
+      <div class="submit">
         <input type="submit" value="submit">
         
       </div>
@@ -100,6 +95,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  box-shadow: inset 0 0 20px red;
 }
 
 .login-title {
