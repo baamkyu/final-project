@@ -1,7 +1,7 @@
 <template>
   <div>
     <BoxOffice/>
-    <RealBoxOffice/>
+    <RandomMovie/>
     <AwardsMovie/>
     <PreferDirector/>
     <PreferActor/>
@@ -11,23 +11,23 @@
 </template>
 
 <script>
-import BoxOffice from '@/components/BodyBoxOffice'
+import BoxOffice from '@/components/BoxOffice'
+import RandomMovie from '@/components/RandomMovie'
 import AwardsMovie from '@/components/BodyAwards'
 import PreferDirector from '@/components/BodyPreferDirector'
 import PreferActor from '@/components/BodyPreferActor'
 import AverageScore from '@/components/BodyAverageScore'
-import RealBoxOffice from '@/components/RealBoxOffice'
 // import SearchBar from '@/components/SearchBar'
 
 export default {
   name: 'BodyPage',
   components: {
-    BoxOffice,
+    RandomMovie,
     PreferDirector,
     PreferActor,
     AverageScore,
     AwardsMovie,
-    RealBoxOffice,
+    BoxOffice,
     // SearchBar
   },
 }

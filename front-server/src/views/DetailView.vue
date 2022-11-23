@@ -157,6 +157,7 @@ export default {
   /* position: fixed; */
   /* height: 45px;
   width: 45px; */
+  border: none;
   font-size: 30px;
 }
 
