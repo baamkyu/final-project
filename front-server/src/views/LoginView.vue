@@ -1,12 +1,7 @@
 <template>
   <div id= "top-space" class="wrap">
     <form class="login" @submit.prevent="logIn">
-      <h2>Log-in</h2>
-      <div class="login_sns">
-        <li class="login_li"><a class="login_a" href=""><i class="fab fa-instagram"></i></a></li>
-        <li class="login_li"><a class="login_a" href=""><i class="fab fa-facebook-f"></i></a></li>
-        <li class="login_li"><a class="login_a" href=""><i class="fab fa-twitter"></i></a></li>
-      </div>
+      <h2 class="login-title">로그인</h2>
       <div class="login_id">
         <h4 for="username">아이디</h4>
         <input type="text" id="username" placeholder="아이디" v-model="username">
@@ -15,13 +10,11 @@
           <h4 for="password">비밀번호</h4>
           <input type="password" id="password" placeholder="비밀번호" v-model="password">
       </div>
-      <div class="forgot_pw">
-          <a class="login_a" href="">Forgot Password?</a>
-      </div>
       <div class="submit">
         <input type="submit" value="submit">
       </div>
-      <router-link :to="{ name: 'SignUpView' }">회원가입하러 가기!</router-link>
+      <br>
+      <router-link :to="{ name: 'SignUpView' }" class="go-loginpage">회원가입하러 가기!</router-link>
     </form>
   </div>
 </template>
@@ -89,6 +82,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border: white 1px solid;
 }
 
 h2 {

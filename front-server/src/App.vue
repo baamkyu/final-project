@@ -32,6 +32,7 @@ export default {
 .HomePage {
   background: rgb(28,29,31);
   color: white;
+  min-width: 1000px !important;
 }
 
 .header-style {
@@ -45,6 +46,5 @@ export default {
   /* justify-content: space-between;
   align-items: center; */
 }
-
 
 </style>

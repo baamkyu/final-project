@@ -1,7 +1,5 @@
 <template>
-  <div>
     <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" @click="goMovieDetail">
-  </div>
 </template>
 
 <script>
@@ -19,5 +17,8 @@ export default {
 </script>
 
 <style>
+  .wantlist-img-container{
+    border: 1px solid white;
 
+  }
 </style>
