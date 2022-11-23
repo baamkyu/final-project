@@ -43,7 +43,7 @@ class Tmdb_Movie(models.Model):
   vote_average = models.FloatField()
   overview = models.TextField()
   poster_path = models.TextField(null=True)
-  wantlist = models.ManyToManyField(settings.AUTH_USER_MODEL)
+  wantlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='wantmovies')
 
 class Comment(models.Model):
   movie = models.ForeignKey(Tmdb_Movie, on_delete=models.CASCADE)

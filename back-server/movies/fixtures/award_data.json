@@ -716,19 +716,6 @@
  },
  {
   "model": "movies.award_Movie",
-  "pk": 1019428,
-  "fields": {
-   "titel": "Icarus: The Aftermath",
-   "adult": false,
-   "vote_average": 0,
-   "overview": "",
-   "poster_path": null,
-   "release_date": "2022",
-   "festival_name": "아카데미"
-  }
- },
- {
-  "model": "movies.award_Movie",
   "pk": 377462,
   "fields": {
    "titel": "O.J.: 메이드 인 아메리카",

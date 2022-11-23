@@ -23,7 +23,6 @@ urlpatterns = [
     # 12. 코멘트 삭제하기 구현, 13. 코멘트 수정하기 구현
     path('comments/<int:comment_pk>/edit_delete/', views.comment_edit_del), 
     
-    # 13. 특정 장르의 영화 리스트 가져오기
     path('genres/', views.genre_list),
     
     # 14. 영화제 수상작 리스트 가져오기
