@@ -55,7 +55,6 @@
         </form>
     </div>
     </div>
-
   </div>
 </template>
 
@@ -157,6 +156,11 @@ export default {
 .comment-item-area {
   margin-left: 20%;
   margin-right: 20%;
+}
+
+.comment-icon-button{
+  background: #1C1D1F;
+  border: 1px #1C1D1F solid;
 }
 
 .button-p-size {
