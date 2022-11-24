@@ -11,7 +11,6 @@
         </div>
         
     </div>
-
   </div>
 </template>
 
@@ -27,15 +26,24 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'IM_Hyemin-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .howmanycomment{
   text-align: center;
   background-color: black;
-  height:100%;
+  height: 165px;
 }
+
 
 .footer-comment{
   padding-top: 10px;
   color: crimson;
+  font-family: 'IM_Hyemin-Bold';
 }
 .footer-text {
   color: gray
@@ -45,7 +53,7 @@ export default {
   display: inline-flex;
   justify-content: center;
   background-color: black;
-  height: 110px;
+  /* height: 110px; */
 }
 
 .footer-left-item {
@@ -53,8 +61,10 @@ export default {
   justify-content: center;
 }
 .footer-right-item {
+  font-family: 'twayair';
   display: flex;
-  justify-content: center;
+  color: gray;
+  justify-content: left;
   align-items: center;
 }
 

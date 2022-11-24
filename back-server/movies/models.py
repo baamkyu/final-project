@@ -63,3 +63,16 @@ class award_Movie(models.Model):
   release_date = models.CharField(max_length=4)
   festival_name = models.CharField(max_length=20)
   objects = RandomManager()
+
+class Recommendmovie(models.Model):
+  title = models.CharField(max_length=50)
+  titleEn = models.CharField(max_length=50)
+  director = models.CharField(max_length=50)
+  year = models.IntegerField()
+  nation = models.CharField(max_length=50)
+  genre = models.CharField(max_length=50)
+  vote_average = models.FloatField()
+  overview = models.TextField()
+  poster_path = models.TextField(null=True)
+  adult = models.BooleanField()
+  objects = RandomManager()

@@ -33,12 +33,4 @@ export default {
 </script>
 
 <style>
-.css-title {
-    color: #292a32;
-    font-size: 15px;
-    font-weight: 400;
-}
-.movieInfo {
-  color: white;
-}
 </style>

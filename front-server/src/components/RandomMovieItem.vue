@@ -12,7 +12,7 @@
         </form>
       </div> -->
       <!-- 영화 제목 -->
-      <div class="css-title movieInfo">{{randomMovie?.movie?.movieNm}}</div>
+      <div class="movieInfo-title">{{randomMovie?.movie?.movieNm}}</div>
       <!-- 개봉년도, 개봉국가 -->
       <div class="movieInfo">
         {{randomMovie?.movie?.prdtYear}} ·
@@ -30,10 +30,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
-
-// const API_URL = 'http://127.0.0.1:8000'
-
 export default {
   name: 'RandomMovieItem',
   props: {
@@ -41,7 +37,6 @@ export default {
   },
   data(){
     return {
-      // alreadyWant: Number,
     }
   },
   // methods 제거해도 되는건지 확인 필요
@@ -49,35 +44,6 @@ export default {
     goMovieDetail() {
       this.$router.push({ name:'DetailView', params: { id: this.randomMovie?.id } })
     },
-
-    // // 10. 보고싶어요 구현하기 - 클릭시 보고 싶어요 상태 변경하기
-    // clickWant() {
-    //   axios({
-    //     method: 'post',
-    //     url: `${API_URL}/api/v1/movies/${this.$route.params.id}/wants/`,
-    //     headers: {
-    //                 Authorization: `Token ${this.$store.state.token}`
-    //             }
-    //   })
-    //     .then(() => {
-    //       this.alreadyWant = !this.alreadyWant
-    //     })
-    //     .catch((err) => console.log(err))
-    // },
-    // // 10. 보고싶어요 구현하기 - 현재 상태 확인 (이미 보고 싶어요 눌렀는지)
-    // checkWant() {
-    //   axios({
-    //     method: 'get',
-    //     url: `${API_URL}/api/v1/movies/${this.$route.params.id}/wants/`,
-    //     headers: {
-    //                 Authorization: `Token ${this.$store.state.token}`
-    //             }
-    //   })
-    //     .then((res) => {
-    //       this.alreadyWant = res.data.wantlist.includes(this.$store.state.userPK)
-    //     })
-    //     .catch((err) => console.log(err))
-    //   }
     }
   }
 </script>
@@ -87,9 +53,6 @@ export default {
     color: #292a32;
     font-size: 15px;
     font-weight: 400;
-}
-.movieInfo {
-  color: white;
 }
 
 </style>

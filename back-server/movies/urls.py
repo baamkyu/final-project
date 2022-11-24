@@ -28,5 +28,6 @@ urlpatterns = [
     # 14. 영화제 수상작 리스트 가져오기
     path('award/movie/<str:festival>/', views.award_list),
 
+    # 15. 장르/연도별 추천 영화 가져오기
+    path('recommend/<int:genre>/<int:nation>/', views.recommend_list)
 ]
-

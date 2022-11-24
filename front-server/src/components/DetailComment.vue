@@ -6,6 +6,7 @@
       :key="comment.id"
       :comment="comment"
     />
+    <br>
   </div>
 </template>
 

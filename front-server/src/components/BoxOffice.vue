@@ -85,7 +85,7 @@ export default {
         }
       })
         .then((res) => {
-          console.log(res.data.results)
+          // console.log(res.data.results)
           this.BoxOfficeList = res.data.results
           }) 
         .catch((err) => console.log(err))
@@ -105,10 +105,13 @@ export default {
     font-weight: normal;
     font-style: normal;
 }
-/* .moviebox{
-  border:30px red;
-  
-} */
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .swiper {
   height: 600px;
   width: 100%;
@@ -125,5 +128,11 @@ export default {
 
 .swiper-pagination-bullet {
   background-color: white !important;
+}
+
+.CategoryHeader {
+  margin: 0 0 0px 53px;
+  /* padding: 0 0 0 32; */
+  font-family: TmonMonsori;
 }
 </style>

@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView'
 import RecommendView from '@/views/RecommendView'
-import WantToSeeView from '@/views/WantToSeeView'
 import LoginView from '@/views/LoginView'
 import SignUpView from '@/views/SignUpView'
 import DetailView from '@/views/DetailView'
@@ -42,30 +41,15 @@ const routes = [
     beforeEnter: requireAuth()
   },
   {
-    path: '/wanttosee',
-    name: 'WantToSeeView',
-    component: WantToSeeView,
-    beforeEnter: requireAuth()
-  },
-  {
     path: '/login',
     name: 'LoginView',
     component: LoginView
-    // beforeEnter(to, from, next) {
-    //     if( isLoggedIn === true) {
-    //         console.log('이미 로그인 되어있음!')
-    //         next({ name: 'HomeView' })
-    //       } else{ 
-    //           next()
-    //         }
-    //       }
   },
   {
     path: '/signup',
     name: 'SignUpView',
     component: SignUpView
   },
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   {
     path: '/profile/:username',
     name: 'MyPageView',

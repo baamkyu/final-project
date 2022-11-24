@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 
-from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Nation, Director, award_Movie
-from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike, UserDetailSerializer, MovieWant, GenreSerializer, AwardMovieSerializer
+from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Nation, Director, award_Movie, Recommendmovie
+from .serializers import MovieListSerializer, MovieSerializerTMDB, CommentSerializer, CommentListSerializer, MovieCommentSerializer, MovieAllInfoSerializer, CommentLike, UserDetailSerializer, MovieWant, GenreSerializer, AwardMovieSerializer, RecommendMovieSerializer
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from accounts.models import User
@@ -153,6 +153,16 @@ def award_list(request, festival):
     serializer = AwardMovieSerializer(movies, many=True)
     return Response(serializer.data)
 
-
-
+# 15. 영화 추천
+@api_view(['GET'])
+def recommend_list(request, genre, nation):
+    genre_list = ['SF', '가족', '공포(호러)', '다큐멘터리', '드라마', '멜로/로맨스', '뮤지컬',
+                    '미스터리', '범죄', '사극', '서부극(웨스턴)', '스릴러', '애니메이션', '액션',
+                    '어드벤처', '장르', '전쟁', '코미디', '판타지']
+    nation_list = ['해외', '국내']
+    
+    movies = Recommendmovie.objects.filter(genre=genre_list[genre], nation=nation_list[nation])
+    movies = movies.random(10)
+    serializer = RecommendMovieSerializer(movies, many=True)
+    return Response(serializer.data)
 

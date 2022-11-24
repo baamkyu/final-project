@@ -1,5 +1,5 @@
 <template>
-  <div id="top-space">
+  <div id="top-space" class="page-min-height">
     <img src="../assets/page404.png" class="Page404">
   </div>
 </template>
@@ -13,6 +13,9 @@ export default {
 <style>
 #top-space {
   padding-top: 75px;
+}
+.page-min-height{
+  min-height: 100vw;
 }
 
 .Page404 {

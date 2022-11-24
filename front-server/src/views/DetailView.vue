@@ -2,7 +2,7 @@
   <div id="top-space">
     <div class="center-item">
       <div class="detail-border">
-        <h1>{{ movie?.movie?.movieNm }}</h1>
+        <h1 class="font-twayair">{{ movie?.movie?.movieNm }}</h1>
         <div class="detail-div">
           <div>
             <img class="center-img" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`" alt="영화정보 확인하기">
@@ -17,21 +17,20 @@
         </div>
       
       <!-- 영화 정보 -->
-        <div>
+        <div class="detailview-font">
           <p>제목 : {{ movie?.movie.movieNm }}</p>
           <p>상영 시간 : {{ movie?.movie.showTm }}분</p>
           <p>개봉 년도 : {{ movie?.movie.prdtYear }}년</p>
-          <p>감독 : <span v-for="(director, idx) in movie?.movie.directors" :key="idx">{{director}}, </span></p>
-          <p>출연 배우 : <span v-for="(actor, idx) in movie?.movie.actors" :key="idx">{{actor}}, </span></p>
-          <p>장르 : <span v-for="(genre, idx) in movie?.movie.genres" :key="idx">{{genre}}, </span></p>
-
-          <p>청소년 관람 불가 :{{ movie?.adult }}</p>
+          <p>감독 : <span v-for="(director, idx) in movie?.movie.directors" :key="idx">{{director}} </span></p>
+          <p>출연 배우 : <span v-for="(actor, idx) in movie?.movie.actors" :key="idx">{{actor}} </span></p>
+          <p>장르 : <span v-for="(genre, idx) in movie?.movie.genres" :key="idx">{{genre}} </span></p>
           <p>평점 : {{ movie?.vote_average }}</p>
-          <p>줄거리 :{{ movie?.overview }}</p>
+          <p>줄거리 : {{ movie?.overview }}</p>
         </div>
       </div>
     </div>
-    <hr>
+    <br>
+    <br>
     
     <SimilarMovieList :movie-pk="moviePK"/>
     <CreateComment :movie-pk="moviePK"/>
@@ -122,6 +121,20 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-twayair{
+  font-family: 'twayair'
+}
+
+.detailview-font{
+  font-family: 'twayair';
+}
 #top-space {
   padding-top: 75px;
 }

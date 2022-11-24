@@ -32,7 +32,7 @@ export default {
 .HomePage {
   background: rgb(28,29,31);
   color: white;
-  min-width: 1000px !important;
+  min-height: 100vh !important;
 }
 
 .header-style {

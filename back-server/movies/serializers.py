@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Director, award_Movie
+from .models import Movie, Tmdb_Movie, Comment, Genre, Actor, Director, award_Movie, Recommendmovie
 from accounts.models import User
 from django_random_queryset import RandomManager
 
@@ -115,3 +115,8 @@ class AwardMovieSerializer(serializers.ModelSerializer):
         model = award_Movie
         fields = '__all__'
 
+# 15. 장르/나라별 추천
+class RecommendMovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recommendmovie
+        fields = '__all__'

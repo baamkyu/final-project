@@ -47,7 +47,7 @@ export default {
     display: grid;
     justify-content: center;
     grid-template-columns: 298px 298px 298px;
-    grid-gap: 3px;
+    grid-gap: 5px;
     /* padding: 10px; */
     color: black;
     /* background-color: #f54; */

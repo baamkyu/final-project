@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="comment-item-area" v-if="!wantEdit">
-      <br>
       <hr>
       <span>작성자 : 
         <router-link
@@ -9,11 +8,9 @@
         </router-link>
       </span>
       <!-- <span> 좋아요 : {{likecnt}}</span> -->
-      <br>
-      <br>
       <p :v-model="editContent">{{comment?.content}}</p>
       <!-- <p>{{comment?.content}}</p> -->
-      <p>{{comment?.created_at}}</p>
+      <p>{{comment?.updated_at.slice(0, 10)}}</p>
       <!-- # 6. 코멘트 좋아요 구현 -->
       <div class="form-inline-block">
         <form @submit.prevent="clickLike">
@@ -32,13 +29,13 @@
         </form>
         <!-- # 12. 코멘트 삭제하기 구현 - 작성자 일경우 나오게하기!-->
           <form v-if="isSameUser&&!wantEdit" @submit.prevent="deleteComment">
-            <button type="submit">
+            <button type="submit" class="comment-icon-item">
               <span class="material-symbols-outlined">delete</span>      
             </button>
           </form>
         <!-- # 13. 코멘트 수정하기 구현 - 작성자 일경우 나오게하기! -->
         <form v-if="isSameUser&&!wantEdit" @submit.prevent="clickEdit">
-          <button type="submit">
+          <button type="submit" class="comment-icon-item">
             <span class="material-symbols-outlined">edit </span>      
           </button>
         </form>
@@ -50,7 +47,8 @@
       <div class="comment-area">
         <form @submit.prevent="editComment" class="comment-submit">
             <label for="content"></label>
-            <textarea type="text" id="content" cols="30" rows="10" class="comment" v-model="editContent"></textarea><br>
+            <textarea type="text" id="content" cols="30" rows="10" class="comment" v-model="editContent"></textarea>
+            <br>
             <input type="submit" id="submit" class="comment-button" value="수정">
         </form>
     </div>
@@ -185,6 +183,10 @@ export default {
     margin-left: 20%;
 }
 
+.comment-icon-item {
+  background-color: #1C1D1F;
+  border: 1px #1C1D1F solid;
+}
 .comment {
     width: 70%;
     height: 100px;

@@ -18,7 +18,7 @@
       <div class="swiper-button-prev" slot="button-prev"></div>
       <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
-    <hr>
+    <br>
   </div>
 </template>
 
@@ -26,10 +26,8 @@
 import AwardsItem from '@/components/BodyAwardsItem'
 import axios from 'axios'
 import _ from 'lodash'
-
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import "swiper/css/swiper.css"
-
 export default {
   name: 'AwardsMovie',
   components: {
@@ -129,7 +127,12 @@ export default {
 /* h3 {
   font-family: 'GangwonEduPowerExtraBoldA';
 } */
-
+@font-face {
+    font-family: 'TmonMonsori';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 @font-face {
     font-family: 'GangwonEduPowerExtraBoldA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
@@ -162,7 +165,6 @@ export default {
   line-height: 1.2;
   padding-right: 50px;
 }
-
 .selectbox{
   padding: 2px;
   width: 145px;

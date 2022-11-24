@@ -1,6 +1,6 @@
 <template>
   <div id="top-space">
-    <div class="center-item">
+    <div class="center-item mypage-font">
       <span class="material-symbols-outlined account_circle">account_circle</span>
 
       <!-- # 11. 유저간 팔로우 구현 -->
@@ -19,9 +19,9 @@
       </form>
     
       <br>
-    <p>보고 싶어요</p> 
+    <p class="mypage-font">찜한 영화</p> 
     </div>
-    <WantList/>
+    <WantList class="mypage-view"/>
   </div>
 </template>
 
@@ -107,6 +107,10 @@ export default {
 </script>
 
 <style>
+.mypage-font{
+  font-family: 'twayair';
+  font-size: 18px;
+}
 
 .follow-button{
   background-color: rgb(28,29,31);
@@ -117,5 +121,9 @@ export default {
 
 .account_circle{
   font-size: 200px !important;
+}
+
+.mypage-view{
+  min-height: 30vw;
 }
 </style>
